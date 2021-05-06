@@ -1,0 +1,50 @@
+html,
+body {
+  font-family: Segoe UI;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /*? Color shades -- START*/
+  --light: rgb(255, 255, 255, 1);
+  --light-1: rgb(242, 242, 242, 1);
+  --light-2: rgb(217, 217, 217, 1);
+  --light-3: rgb(191, 191, 191, 1);
+
+  --dark: rgb(63, 69, 75, 1);
+  --dark-1: rgb(115, 115, 115, 1);
+  --dark-2: rgb(140, 140, 140, 1);
+
+  --shade-brown: rgb(115, 114, 96, 1);
+  --shade-blue: rgb(103, 120, 140, 1);
+  /*! Color shades -- END*/
+  /* ======== */
+  /*? Shadows -- START*/
+  --shadow-dark: 0px 0px 25px rgba(0, 0, 0, 0.25);
+  --shadow-light: 0px 0px 15px rgba(0, 0, 0, 0.15);
+  /*! Shadows -- END*/
+  /* ======== */
+  /*? Max widths -- START*/
+  --max-width-s: 30rem;
+  --max-width-m: 40rem;
+  --max-width-l: 50rem;
+  /*! Max widths -- END*/
+  /* ======== */
+  /*? Transitions -- START*/
+  --transition-1: 0.3s ease-out;
+  /*! Transitions -- END*/
+  /* ======== */
+  /*? Components -- START*/
+  --navbar-height: 3rem;
+  /*! Components -- END*/
+}

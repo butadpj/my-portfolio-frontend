@@ -1,0 +1,87 @@
+.navbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: var(--navbar-height);
+  display: flex;
+  align-items: center;
+  background: var(--light);
+  color: var(--dark-1);
+  font-size: 1rem;
+  transition: var(--transition-1);
+  font-weight: bold;
+  box-shadow: var(--shadow-light);
+}
+
+.navContent {
+  width: min(85%, var(--max-width-m));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.navLinks {
+  width: 80%;
+  align-items: center;
+  justify-content: flex-end;
+  display: none;
+}
+
+.navLinks > * {
+  margin: 0 0.5rem;
+  padding: 0.5em 1.5em;
+  transition: var(--transition-1);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.navLinks > *.active {
+  background: var(--dark);
+  border-radius: 50rem;
+  color: var(--light);
+}
+
+.navLinks > *:hover {
+  background: var(--dark);
+  border-radius: 50rem;
+  color: var(--light);
+}
+
+.bars {
+  font-size: 1.5em;
+  transition: var(--transition-1);
+  cursor: pointer;
+}
+
+@media screen and (min-width: 50rem) {
+  .navbar {
+    bottom: calc(100% - calc(var(--navbar-height) + 1rem));
+    height: calc(var(--navbar-height) + 1rem);
+  }
+
+  .navContent {
+    width: 85%;
+  }
+
+  .navLinks {
+    display: flex;
+  }
+
+  .bars {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 60rem) {
+  .navLinks > * {
+    margin-left: 2rem !important;
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .navLinks > * {
+    margin-left: 4rem !important;
+  }
+}
