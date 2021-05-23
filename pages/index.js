@@ -19,7 +19,7 @@ const index = ({ home, about }) => {
       <Aims />
       <Project />
       <Contact />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
