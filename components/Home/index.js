@@ -1,59 +1,44 @@
-import { useState, useEffect, useRef } from "react";
-
+import { useRef } from "react";
 import style from "./Home.module.css";
 import Particles from "react-particles-js";
-import ParticlesConfig from "../../hooks/ParticlesConfig";
-import useScrollPosition from "@react-hook/window-scroll";
-import Canvas from "../Canvas";
+import HomeLogic from "./HomeLogic";
+import useGetVersion from "../../hooks/useGetVersion";
 
-const Home = () => {
-  const { simple, bubbles } = ParticlesConfig();
-  const scrollY = useScrollPosition(60);
-  const [isScrollLock, setIsScrollLock] = useState(false);
-  const [scrollText, setScrollText] = useState("Lock");
+const Home = ({ data }) => {
+  const scrollLockRef = useRef(null);
+  const largeTextRef = useRef(null);
 
-  const scrollLock = useRef(null);
-  const toggleScrollLock = () => {
-    if (isScrollLock) {
-      document.body.style.overflow = "auto";
-      setScrollText("Lock");
-      setIsScrollLock(false);
-      return;
-    }
-    console.log("SDadsa");
-    document.body.style.overflow = "hidden";
+  const { chosenParam, scrollText, scrollY, toggleScrollLock, unlockScroll } =
+    HomeLogic(scrollLockRef);
 
-    setScrollText("Unlock");
-    setIsScrollLock(true);
-  };
+  let homeData = useGetVersion("v1", data);
 
-  useEffect(() => {
-    if (scrollY >= 40) {
-      scrollLock.current.classList.add("hide");
-      scrollLock.current.style.pointerEvents = "none";
-    } else {
-      scrollLock.current.classList.remove("hide");
-      scrollLock.current.style.pointerEvents = "all";
-    }
-  }, [scrollY]);
+  let smallText = homeData ? homeData.small_text : "I'm";
+  let largeText = homeData ? homeData.large_text : "Paul";
+  let careerTitle = homeData ? homeData.career_title : "Software Developer";
 
   return (
     <section className={style.home} id="home">
-      {/* <Canvas /> */}
-      <Particles params={simple} />
+      <Particles
+        height="100vh"
+        params={chosenParam}
+        canvasClassName="particles"
+      />
       <main className={style.main}>
         <div className={style.mainText}>
           <section>
-            <div className={style.mainTextPronoun}>I'm</div>
-            <div className={style.mainTextName}>Paul</div>
+            <div className={style.mainTextPronoun}>{smallText}</div>
+            <div className={style.mainTextName} ref={largeTextRef}>
+              {largeText}
+            </div>
           </section>
-          <div className={style.careerTitle}>Software Developer</div>
+          <div className={style.careerTitle}>{careerTitle}</div>
         </div>
       </main>
       <p
         onClick={toggleScrollLock}
         className={style.lockScroll}
-        ref={scrollLock}
+        ref={scrollLockRef}
       >
         {scrollText} scroll
       </p>
