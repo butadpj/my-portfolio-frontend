@@ -3,9 +3,8 @@
   color: var(--light);
   font-size: 2rem;
   text-align: center;
-  margin-bottom: 5em;
   padding: 1.7em 0.5em;
-  position: relative;
+  padding-bottom: 3em;
 }
 
 .main {
