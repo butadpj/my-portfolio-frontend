@@ -6,6 +6,7 @@ const Canvas = (props) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const canvasRef = useRef(null);
   const { randomIntFromRange } = CanvasHooks();
+
   const screenResize = () => {
     setScreenSize({ w: window.innerWidth, h: window.innerHeight });
   };
@@ -95,7 +96,6 @@ const Canvas = (props) => {
     const canvas = canvasRef.current;
 
     const context = canvas.getContext("2d");
-    // setContextState(context);
 
     let animationFrameId;
     let totalCircles = window.innerWidth / 40;
