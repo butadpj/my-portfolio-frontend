@@ -1,4 +1,5 @@
 .footer {
+  position: relative;
   background: var(--shade-brown);
   color: var(--light);
   font-size: 2rem;
