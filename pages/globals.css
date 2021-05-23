@@ -1,6 +1,6 @@
 html,
 body {
-  font-family: Segoe UI;
+  font-family: Segoe UI !important;
   background: var(--light-1);
   scroll-behavior: smooth;
 }
@@ -16,10 +16,6 @@ a {
   box-sizing: border-box;
 }
 
-#tsparticles {
-  height: 100vh;
-}
-
 .hide {
   opacity: 0;
   user-select: none;
@@ -32,19 +28,53 @@ a {
   height: 100vh !important;
 }
 
+.navBarWhite {
+  background: var(--light) !important;
+  box-shadow: var(--shadow-light) !important;
+  color: var(--dark-1) !important;
+}
+
+.btn {
+  font-family: Segoe UI !important;
+  color: var(--dark) !important;
+  font-weight: bold !important;
+}
+
+.btn.icon p {
+  margin-right: 1em;
+}
+
+.btn.btn-dark {
+  background: var(--dark) !important;
+  color: var(--light) !important;
+}
+
+.btn.btn-light {
+  color: var(--light) !important;
+  border: 2px solid var(--light) !important;
+  border-radius: 0 !important;
+}
+
+.btn.btn-success {
+  background: var(--dark) !important;
+  color: var(--light) !important;
+}
+
 :root {
   /*? Color shades -- START*/
   --light: rgb(255, 255, 255, 1);
-  --light-1: rgb(242, 242, 242, 1);
+  --light-1: rgb(231, 231, 231);
   --light-2: rgb(217, 217, 217, 1);
   --light-3: rgb(191, 191, 191, 1);
 
-  --dark: rgb(63, 69, 75, 1);
+  --dark: rgb(49, 53, 58, 1);
   --dark-1: rgb(115, 115, 115, 1);
   --dark-2: rgb(140, 140, 140, 1);
 
   --shade-brown: rgb(115, 114, 96, 1);
   --shade-blue: rgb(103, 120, 140, 1);
+  --shade-blue-1: rgb(103, 150, 211, 1);
+  --shade-blue-2: rgb(63, 127, 255, 1);
   /*! Color shades -- END*/
   /* ======== */
   /*? Shadows -- START*/
