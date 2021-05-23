@@ -1,0 +1,63 @@
+.footer {
+  background: var(--shade-brown);
+  color: var(--light);
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 5em;
+  padding: 1.7em 0.5em;
+  position: relative;
+}
+
+.main {
+  color: var(--light-2);
+}
+
+.scrollTop {
+  position: absolute;
+  top: -5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--light-3);
+  cursor: pointer;
+}
+
+.scrollTopIcon {
+  background: var(--light);
+  width: min-content;
+  padding: 0.2rem 0.8rem;
+  border-radius: 30%;
+  color: var(--shade-brown);
+  font-size: 2em;
+  margin: 0 auto;
+  margin-top: 0.5rem;
+}
+
+.mediaLinks {
+  font-size: 1.2em;
+  margin-bottom: 1.5rem;
+  color: var(--light);
+}
+
+.mediaLinks > * {
+  margin: 0 1.5rem;
+}
+
+.contacts {
+  font-size: 0.5em;
+  font-weight: bold;
+}
+
+.contacts > * {
+  margin: 1em 0;
+}
+
+.footerLogo {
+  margin-top: 1em;
+}
+
+.footerLogo p {
+  font-size: 0.5em;
+  font-weight: 600;
+}

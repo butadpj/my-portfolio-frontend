@@ -1,0 +1,86 @@
+.projectWrapper {
+  text-align: center;
+  padding: 0 1rem;
+  width: min(100%, 50rem);
+  margin: 0 auto;
+}
+
+.title {
+  color: var(--shade-blue-1);
+}
+
+.date {
+  color: var(--dark-2);
+  font-weight: 600;
+  font-size: 0.55em;
+}
+
+.description {
+  margin: 1em 0;
+  font-size: 0.65em;
+}
+
+.links {
+  font-weight: bold;
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.links > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.links svg {
+  font-size: 0.7em;
+  margin-right: 0.5rem;
+}
+
+.links a {
+  text-decoration: underline;
+  font-size: 0.55em;
+}
+
+.websiteLink {
+  color: var(--shade-blue-2);
+}
+
+.repoLink {
+  color: var(--dark);
+}
+
+/* FLEXBOX */
+/* .tsImages {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 1em;
+} */
+
+/* CSS GRIDS */
+.tsImages {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.techStack {
+  color: var(--dark-2);
+  font-size: 0.45em;
+}
+
+.detailBtn {
+  margin-top: 2em !important;
+}
+
+@media screen and (min-width: 360px) {
+  .links {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
