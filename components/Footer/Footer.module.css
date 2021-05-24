@@ -26,7 +26,7 @@
 .scrollTopIcon {
   background: var(--light);
   width: min-content;
-  padding: 0.2rem 0.8rem;
+  padding: 0.2em 0.5em;
   border-radius: 30%;
   color: var(--shade-brown);
   font-size: 2em;
