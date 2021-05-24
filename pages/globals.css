@@ -2,7 +2,7 @@ html,
 body {
   font-family: Segoe UI !important;
   background: var(--light-1);
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
 }
 
 a {
