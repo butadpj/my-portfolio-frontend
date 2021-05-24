@@ -1,4 +1,6 @@
 import "./globals.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+
 // import App from 'next/app'
 
 function MyApp({ Component, pageProps }) {
