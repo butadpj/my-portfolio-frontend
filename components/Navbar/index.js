@@ -7,7 +7,7 @@ import useScrollPosition from "@react-hook/window-scroll";
 import Image from "next/image";
 import style from "./Navbar.module.css";
 
-const smoothScrollDuration = 80;
+const smoothScrollDuration = 600;
 
 const Navbar = () => {
   const [navShow, setNavShow] = useState(false);
@@ -15,26 +15,6 @@ const Navbar = () => {
   const scrollY = useScrollPosition(10);
   const navBar = useRef(null);
   const navLinks = useRef(null);
-
-  const [screenSize, setScreenSize] = useState({ w: 0, h: 0 });
-  const screenResize = () => {
-    setScreenSize({ w: window.innerWidth, h: window.innerHeight });
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", screenResize);
-
-    return () => {
-      window.removeEventListener("resize", screenResize);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (window.innerWidth >= 800) {
-      console.log(screenSize);
-    } else {
-    }
-  }, [screenSize]);
 
   const handleMouseLeave = () => {
     setNavShow(false);
@@ -53,13 +33,10 @@ const Navbar = () => {
   useEffect(() => {
     if (navShow) {
       navLinks.current.classList.add("navLinksShow");
-
       navLinks.current.addEventListener("mouseleave", handleMouseLeave);
-
       return;
     }
     navLinks.current.classList.remove("navLinksShow");
-
     return () => {
       navLinks.current.removeEventListener("mouseleave", handleMouseLeave);
     };
@@ -105,7 +82,7 @@ const Navbar = () => {
               to="projects"
               spy={true}
               smooth={true}
-              offset={-80}
+              offset={-100}
               duration={smoothScrollDuration}
             >
               Projects
@@ -115,7 +92,7 @@ const Navbar = () => {
               to="contact"
               spy={true}
               smooth={true}
-              offset={-50}
+              offset={-70}
               duration={smoothScrollDuration}
             >
               Contact
