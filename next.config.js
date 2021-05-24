@@ -1,5 +1,12 @@
-module.exports = {
+const withPWA = require("next-pwa");
+
+module.exports = withPWA({
   /* config options here */
+  pwa: {
+    dest: "public",
+    register: true,
+    skipWaiting: true,
+  },
   env: {
     devHost: "http://127.0.0.1:8000", // Development hostname
     prodHost: "", // Production hostname
@@ -7,4 +14,4 @@ module.exports = {
   images: {
     domains: ["127.0.0.1"],
   },
-};
+});

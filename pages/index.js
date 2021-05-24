@@ -6,6 +6,7 @@ import Aims from "../components/Aims";
 import Project from "../components/Projects";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import PWAInstallerAlert from "../components/PWAInstallerAlert";
 
 const index = ({ home, about }) => {
   return (
@@ -17,8 +18,11 @@ const index = ({ home, about }) => {
           name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
         />
-        <meta name="description" content="Description" />
-        <meta name="keywords" content="Keywords" />
+        <meta name="description" content="My personal web dev portfolio" />
+        <meta
+          name="keywords"
+          content="Portfolio, Web development portfolio, I'm Paul, Paul John Butad's Portfolio"
+        />
         <title>I'm Paul - Software Developer</title>
 
         <link
@@ -43,6 +47,7 @@ const index = ({ home, about }) => {
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
+      <PWAInstallerAlert />
       <Navbar />
       <Home data={home} />
       <About data={about} />
