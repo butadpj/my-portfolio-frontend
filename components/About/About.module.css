@@ -26,7 +26,6 @@
 .aboutText {
   font-size: 0.7em;
   font-weight: 600;
-  margin-left: 0.5rem;
   text-align: left;
   color: var(--dark-1);
   width: min(95%, 45ch);
