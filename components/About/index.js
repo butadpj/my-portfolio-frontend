@@ -4,7 +4,6 @@ import useGetVersion from "../../hooks/useGetVersion";
 
 const About = ({ data }) => {
   let aboutData = useGetVersion("v1", data);
-  console.log(aboutData);
 
   // SET DEFAULT DATA (FALL BACK) when server is down
 
@@ -16,8 +15,6 @@ const About = ({ data }) => {
     : "/images/picture/resume_pic_1_50.png";
 
   let personName = aboutData ? aboutData.person_name : "Paul John Butad";
-
-  console.log(displayPicture);
 
   return (
     <section className={style.about} id="about">
