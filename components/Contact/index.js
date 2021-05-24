@@ -41,6 +41,7 @@ const Contact = () => {
               rows="4"
               placeholder="Your message here..."
               required
+              className={style.textArea}
             ></textarea>
           </div>
           <Button

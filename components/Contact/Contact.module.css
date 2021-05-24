@@ -59,6 +59,11 @@
   box-shadow: var(--shadow-dark);
 }
 
+.textArea::placeholder {
+  font-family: Segoe UI;
+  font-style: italic;
+}
+
 @media screen and (max-width: 360px) {
   .contact {
     font-size: 1.7rem;
