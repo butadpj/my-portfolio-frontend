@@ -87,6 +87,7 @@ export const getStaticProps = async () => {
 
     return {
       props: { home: responses[0], about: responses[1] },
+      revalidate: 30, //seconds
     };
   } catch (err) {
     console.log(err);
