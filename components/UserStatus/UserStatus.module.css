@@ -1,0 +1,31 @@
+.userStatus {
+  position: fixed;
+  top: 0;
+  z-index: 500;
+  font-size: 0.65rem;
+  padding: 0.5em 1em;
+  color: var(--light);
+  background: var(--dark-2-light);
+  transition: var(--transition-2);
+  cursor: pointer;
+}
+
+@media screen and (min-width: 50rem) {
+  .userStatus {
+    top: calc(var(--navbar-height) + 1rem);
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (min-width: 60rem) {
+  .userStatus {
+    top: calc(var(--navbar-height) + 2rem);
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .userStatus {
+    top: calc(var(--navbar-height) + 2.5rem);
+    font-size: 0.75rem;
+  }
+}
