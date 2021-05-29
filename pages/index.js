@@ -7,6 +7,7 @@ import Project from "../components/Projects";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import PWAInstallerAlert from "../components/PWAInstallerAlert";
+import UserStatus from "../components/UserStatus";
 
 const index = ({ home, about }) => {
   return (
@@ -49,6 +50,7 @@ const index = ({ home, about }) => {
       </Head>
       <PWAInstallerAlert />
       <Navbar />
+      <UserStatus />
       <Home data={home} />
       <About data={about} />
       <Aims />

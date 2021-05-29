@@ -1,7 +1,6 @@
 .about {
   background: var(--light-1);
-  padding: 1.2em 1em;
-
+  padding: 2em 1em;
   font-size: 2rem;
   color: var(--dark-2);
 }
@@ -19,13 +18,17 @@
 .header {
   font-size: 1.1em;
   font-weight: bold;
-  margin: 0.5em 0;
+  margin-bottom: 1.3em;
   text-align: center;
+  color: var(--dark);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
 }
 
 .aboutText {
   font-size: 0.7em;
   font-weight: 600;
+  letter-spacing: 1px;
   text-align: left;
   color: var(--dark-1);
   width: min(95%, 45ch);
@@ -33,20 +36,22 @@
 }
 
 .profile {
+  margin-top: 1em;
   text-align: center;
 }
 
 .profileImg {
   object-fit: cover;
+  border: 3px solid var(--dark) !important;
   border-radius: 50%;
   mix-blend-mode: darken;
 }
 
 .profileName {
   font-size: 0.55em;
-  margin-top: 1em;
+  margin-top: 0.5em;
   font-weight: bold;
-  color: var(--dark-1);
+  color: var(--dark);
 }
 
 @media screen and (max-width: 280px) {
@@ -73,7 +78,7 @@
   }
 
   .main > * {
-    margin-top: 0;
+    margin-top: 1em;
   }
 
   .aboutText {
@@ -94,7 +99,7 @@
 
 @media screen and (min-width: 80rem) {
   .about {
-    padding: 2em 3em;
+    padding: 3em;
     /* padding-left: 3em;
     padding-right: 3em; */
   }
@@ -118,7 +123,7 @@
 
 @media screen and (min-width: 100rem) {
   .about {
-    padding-left: 6.5em;
-    padding-right: 6.5em;
+    padding-left: 5em;
+    padding-right: 5em;
   }
 }

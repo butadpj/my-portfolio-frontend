@@ -35,9 +35,10 @@ const Contact = () => {
         <form className={style.form} onSubmit={(e) => submitEmail(e)}>
           <div className={style.formInputs}>
             <input type="text" name="name" placeholder="Name" required />
-            <input type="text" name="email" placeholder="Email" required />
+            <input type="email" name="email" placeholder="Email" required />
             <input type="text" name="subject" placeholder="Subject" required />
             <textarea
+              name="message"
               rows="4"
               placeholder="Your message here..."
               required

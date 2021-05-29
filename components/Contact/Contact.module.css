@@ -4,7 +4,7 @@
   font-size: 2rem;
   text-align: center;
   padding: 2em 1.5em;
-  padding-bottom: 3.5em;
+  padding-bottom: 4.5em;
 }
 
 .headerText {
@@ -13,13 +13,12 @@
   text-transform: uppercase;
   letter-spacing: 0.35rem;
   margin-bottom: 1em;
-
   /* Adjustable underline */
   background-image: linear-gradient(var(--light), var(--light));
   background-position: bottom center; /*Adjust the background-position to move the line*/
-  background-size: 75% 0.8rem; /*Adjust the background size to control length and height*/
+  background-size: 75% 0.6rem; /*Adjust the background size to control length and height*/
   background-repeat: no-repeat;
-  padding-bottom: 1.5rem; /* this can also control the position */
+  padding-bottom: 1.1rem; /* this can also control the position */
 }
 
 .subText {
@@ -33,13 +32,14 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  width: min(100%, 30rem);
+  width: min(100%, 40rem);
 }
 
 .formInputs > * {
   background: var(--shade-brown);
   color: var(--light);
-  font-size: 0.55em;
+  font-size: 0.65em;
+  font-family: var(--primary-font);
   padding: 0.8em;
   padding-left: 0.8em;
   border: none;
@@ -55,18 +55,22 @@
 }
 
 .formInputs > *:focus {
-  border: 1px solid var(--light);
-  box-shadow: var(--shadow-dark);
+  border: 2px solid var(--light);
+  margin-bottom: 1.5em;
+  box-shadow: var(--shadow-light);
 }
 
 .textArea::placeholder {
-  font-family: Segoe UI;
+  font-family: var(--primary-font);
   font-style: italic;
+  font-size: 1.1em;
 }
 
 @media screen and (max-width: 360px) {
   .contact {
     font-size: 1.7rem;
+    padding-right: 1em;
+    padding-left: 1em;
   }
 }
 @media screen and (max-width: 280px) {

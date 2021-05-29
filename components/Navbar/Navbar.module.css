@@ -60,7 +60,7 @@
 }
 
 .sectionLinks > *:hover {
-  background: var(--shade-blue);
+  background: var(--dark-1);
   color: var(--light);
 }
 

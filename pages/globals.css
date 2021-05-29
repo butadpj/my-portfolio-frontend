@@ -1,6 +1,6 @@
 html,
 body {
-  font-family: Segoe UI !important;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: var(--light-1);
   /* scroll-behavior: smooth; */
 }
@@ -70,12 +70,19 @@ a {
   --dark: rgb(49, 53, 58);
   --dark-1: rgb(115, 115, 115, 1);
   --dark-2: rgb(140, 140, 140, 1);
+  --dark-2-light: rgb(140, 140, 140, 0.4);
 
   --shade-brown: rgb(115, 114, 96, 1);
   --shade-blue: rgb(103, 120, 140, 1);
   --shade-blue-1: rgb(103, 150, 211, 1);
   --shade-blue-2: rgb(63, 127, 255, 1);
   /*! Color shades -- END*/
+  /* ======== */
+  /*? Font families  -- START*/
+  --primary-font: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --secondary-font: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  /*! Font families  -- END*/
   /* ======== */
   /*? Shadows -- START*/
   --shadow-dark: 0px 0px 25px rgba(0, 0, 0, 0.25);

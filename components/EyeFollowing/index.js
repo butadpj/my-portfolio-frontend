@@ -10,18 +10,22 @@ const EyeFollowing = () => {
     x = (e.clientX * 100) / window.innerWidth;
     y = (e.clientY * 100) / window.innerHeight;
 
-    ballRef.current.style.left = `${x}%`;
-    ballRef.current.style.top = `${y - 10}%`;
-    ballRef.current.style.transform = `translate(-${x - 100}%, -${y - 100}%)`;
+    if (ballRef.current) {
+      ballRef.current.style.left = `${x}%`;
+      ballRef.current.style.top = `${y - 10}%`;
+      ballRef.current.style.transform = `translate(-${x - 100}%, -${y - 100}%)`;
+    }
   };
 
   const touchMoveHandler = (e) => {
     x = (e.touches[0].clientX * 100) / window.innerWidth;
     y = (e.touches[0].clientY * 100) / window.innerHeight;
 
-    ballRef.current.style.left = `${x}%`;
-    ballRef.current.style.top = `${y - 10}%`;
-    ballRef.current.style.transform = `translate(-${x - 100}%, -${y - 100}%)`;
+    if (ballRef.current) {
+      ballRef.current.style.left = `${x}%`;
+      ballRef.current.style.top = `${y - 10}%`;
+      ballRef.current.style.transform = `translate(-${x - 100}%, -${y - 100}%)`;
+    }
   };
 
   useEffect(() => {

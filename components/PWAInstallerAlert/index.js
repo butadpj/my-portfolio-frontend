@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -37,23 +37,36 @@ const PWAInstallerAlert = () => {
     setshowInstallPrompt(false);
   };
 
-  // Access window from client
-  if (typeof window !== "undefined") {
-    window.addEventListener("beforeinstallprompt", (event) => {
-      console.log("👍", "beforeinstallprompt", event);
-      // Stash the event so it can be triggered later.
-      window.deferredPrompt = event;
-      // Show the install button
-      setshowInstallPrompt(true);
-    });
+  const showBeforeInstall = (event) => {
+    console.log("👍", "beforeinstallprompt", event);
+    // Stash the event so it can be triggered later.
+    window.deferredPrompt = event;
+    // Show the install button
+    setshowInstallPrompt(true);
+  };
 
-    window.addEventListener("appinstalled", () => {
-      // Clear the deferredPrompt so it can be garbage collected
-      deferredPrompt = null;
-      // Optionally, send analytics event to indicate successful install
-      console.log("PWA was installed");
-    });
-  }
+  const appInstalled = () => {
+    // Clear the deferredPrompt so it can be garbage collected
+    deferredPrompt = null;
+    // Optionally, send analytics event to indicate successful install
+    console.log("PWA was installed");
+  };
+
+  useEffect(() => {
+    // Access window from client
+    window.addEventListener("beforeinstallprompt", (event) =>
+      showBeforeInstall(event)
+    );
+
+    window.addEventListener("appinstalled", appInstalled);
+
+    return () => {
+      window.removeEventListener("beforeinstallprompt", (event) =>
+        showBeforeInstall(event)
+      );
+      window.removeEventListener("appinstalled", appInstalled);
+    };
+  }, []);
 
   return (
     <div>

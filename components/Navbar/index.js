@@ -1,12 +1,10 @@
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Link, animateScroll as scroll } from "react-scroll";
-
 import useScrollPosition from "@react-hook/window-scroll";
-import Image from "next/image";
 import style from "./Navbar.module.css";
-
 const smoothScrollDuration = 600;
 
 const Navbar = () => {
@@ -34,11 +32,13 @@ const Navbar = () => {
     if (navShow) {
       navLinks.current.classList.add("navLinksShow");
       navLinks.current.addEventListener("mouseleave", handleMouseLeave);
-      return;
+    } else {
+      navLinks.current.classList.remove("navLinksShow");
     }
-    navLinks.current.classList.remove("navLinksShow");
     return () => {
-      navLinks.current.removeEventListener("mouseleave", handleMouseLeave);
+      if (navShow) {
+        navLinks.current.removeEventListener("mouseleave", handleMouseLeave);
+      }
     };
   }, [navShow]);
 
@@ -72,7 +72,7 @@ const Navbar = () => {
               to="about"
               spy={true}
               smooth={true}
-              offset={-50}
+              offset={-20}
               duration={smoothScrollDuration}
             >
               About
