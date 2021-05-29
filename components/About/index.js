@@ -24,7 +24,7 @@ const About = ({ data }) => {
   const editTextSample = async () => {
     if (state.isAuthenticated) {
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/v1/home/1/", {
+        const res = await fetch(`${process.env.devHost}/api/v1/home/1/`, {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${state.accessToken}`, //? LOCAL STORAGE
