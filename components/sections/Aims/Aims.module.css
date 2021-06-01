@@ -9,6 +9,7 @@
 .main {
   width: 80%;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .line {
@@ -28,7 +29,7 @@
   margin-top: 3em;
 }
 
-.myAims > * {
+.myAims > * > * {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,7 +58,7 @@
     justify-content: space-between;
   }
 
-  .myAims > * {
+  .myAims > * > * {
     margin: 0;
   }
 }
@@ -71,11 +72,11 @@
     margin-top: 4em;
   }
 
-  .myAims > * {
+  .myAims > * > * {
     flex-direction: row;
     justify-content: center;
   }
-  .myAims > * p {
+  .myAims > * > * p {
     width: 50%;
     text-align: left;
     font-size: 1em;

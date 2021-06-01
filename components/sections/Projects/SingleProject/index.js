@@ -54,14 +54,17 @@ const SingleProject = () => {
           </a>
         </div>
       </div>
-      <Image
-        src="/images/project-preview/nenetelecom-preview.png"
-        width={800}
-        height={484}
-        layout="responsive"
-        alt="project-preview-image"
-        className={style.previewImg}
-      />
+      <div data-aos="fade-up">
+        <Image
+          src="/images/project-preview/nenetelecom-preview.png"
+          width={800}
+          height={484}
+          layout="responsive"
+          alt="project-preview-image"
+          className={style.previewImg}
+        />
+      </div>
+
       <div className={style.techStack}>
         <h2>Tech stack:</h2>
         <div className={style.tsImages}>

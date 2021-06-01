@@ -3,6 +3,7 @@
   background: var(--dark);
   color: var(--light);
   font-size: 3rem;
+  z-index: 5;
 }
 
 .main {

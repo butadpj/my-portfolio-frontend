@@ -47,21 +47,25 @@ const About = ({ data }) => {
   };
   return (
     <section className={style.about} id="about">
-      <header className={style.headerText} onClick={editTextSample}>
-        ABOUT ME
-      </header>
-      <main className={style.main}>
-        <div className={style.aboutText}>{aboutText}</div>
-        <div className={style.profile}>
-          <Image
-            src={displayPicture}
-            width={110}
-            height={110}
-            className={style.profileImg}
-          />
-          <div className={style.profileName}>{personName}</div>
-        </div>
-      </main>
+      <div data-aos="fade-down">
+        <header className={style.headerText} onClick={editTextSample}>
+          ABOUT ME
+        </header>
+        <main className={style.main}>
+          <div className={style.aboutText}>{aboutText}</div>
+          <div className={style.profile}>
+            <div data-aos="fade-up">
+              <Image
+                src={displayPicture}
+                width={110}
+                height={110}
+                className={style.profileImg}
+              />
+              <div className={style.profileName}>{personName}</div>
+            </div>
+          </div>
+        </main>
+      </div>
     </section>
   );
 };

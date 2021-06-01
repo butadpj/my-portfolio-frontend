@@ -30,7 +30,9 @@ const Contact = () => {
       <main className={style.main}>
         <h2 className={style.headerText}>Contact</h2>
         <h4 className={style.subText}>
-          Want to reach me out? Just ring my bell
+          <div data-aos="zoom-in-right">
+            <p>Want to reach me out? Just ring my bell</p>
+          </div>
         </h4>
         <form className={style.form} onSubmit={(e) => submitEmail(e)}>
           <div className={style.formInputs}>

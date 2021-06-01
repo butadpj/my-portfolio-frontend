@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import Navbar from "../components/Navbar";
 import Home from "../components/sections/Home";
@@ -8,13 +9,29 @@ import Contact from "../components/sections/Contact";
 import Footer from "../components/sections/Footer";
 import PWAInstallerAlert from "../components/PWAInstallerAlert";
 import UserStatus from "../components/UserStatus";
+import Loader from "../components/Loader";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const index = ({ home, about }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    AOS.init({ duration: 800, offset: 100 });
+    AOS.refresh();
+    let timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
   return (
     <>
       <Head>
         <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta
           name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
@@ -48,15 +65,22 @@ const index = ({ home, about }) => {
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
-      <PWAInstallerAlert />
-      <Navbar />
-      <UserStatus />
-      <Home data={home} />
-      <About data={about} />
-      <Aims />
-      <Projects />
-      <Contact />
-      <Footer />
+
+      {isLoading ? (
+        <Loader loading={isLoading} />
+      ) : (
+        <>
+          <PWAInstallerAlert />
+          <Navbar />
+          <UserStatus />
+          <Home data={home} />
+          <About data={about} />
+          <Aims />
+          <Projects />
+          <Contact />
+          <Footer />
+        </>
+      )}
     </>
   );
 };
