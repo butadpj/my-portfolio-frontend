@@ -45,6 +45,19 @@
   height: 0;
 }
 
+.navLinksShow {
+  visibility: visible;
+  opacity: 1;
+  font-size: 1.8em;
+  height: 100vh;
+}
+
+.navBarWhite {
+  background: var(--light);
+  box-shadow: var(--shadow-light);
+  color: var(--dark-1);
+}
+
 .sectionLinks {
   width: 100%;
   text-align: center;

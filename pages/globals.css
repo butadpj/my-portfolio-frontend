@@ -21,19 +21,6 @@ a {
   user-select: none;
 }
 
-.navLinksShow {
-  visibility: visible !important;
-  opacity: 1 !important;
-  font-size: 1.5em !important;
-  height: 100vh !important;
-}
-
-.navBarWhite {
-  background: var(--light) !important;
-  box-shadow: var(--shadow-light) !important;
-  color: var(--dark-1) !important;
-}
-
 .btn {
   font-family: Segoe UI !important;
   color: var(--dark) !important;
