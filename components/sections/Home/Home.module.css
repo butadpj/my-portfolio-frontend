@@ -1,0 +1,78 @@
+.home {
+  height: 100vh;
+  background: var(--dark);
+  color: var(--light);
+  font-size: 3rem;
+}
+
+.main {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: -2rem;
+  transition: var(--transition-1);
+  pointer-events: none;
+}
+
+.mainText {
+  margin: 0 auto;
+  text-align: left;
+  text-transform: uppercase;
+  width: fit-content;
+  font-weight: bold;
+}
+
+.mainTextPronoun {
+  padding-left: 0.3rem;
+  margin-bottom: -1rem;
+}
+
+.mainTextName {
+  font-size: 2em;
+}
+
+.careerTitle {
+  font-size: 0.38em;
+  text-transform: capitalize;
+  font-style: italic;
+  color: var(--light-3);
+  text-align: right;
+}
+
+.lockScroll {
+  position: absolute;
+  background: var(--dark-2);
+  padding: 0.2em 0.5em;
+  font-size: 0.4em;
+  font-weight: 600;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--light);
+  cursor: pointer;
+  transition: var(--transition-1);
+  user-select: none;
+  word-spacing: 0.3rem;
+}
+
+@media screen and (min-width: 50rem) {
+  .mainText {
+    font-size: 1.3em;
+  }
+}
+
+@media screen and (min-width: 60rem) {
+  .mainText {
+    font-size: 1.5em;
+  }
+}
+
+@media screen and (min-width: 60rem) {
+  .mainText {
+    font-size: 1.8em;
+  }
+}
