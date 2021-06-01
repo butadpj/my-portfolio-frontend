@@ -47,7 +47,7 @@ const About = ({ data }) => {
   };
   return (
     <section className={style.about} id="about">
-      <header className={style.header} onClick={editTextSample}>
+      <header className={style.headerText} onClick={editTextSample}>
         ABOUT ME
       </header>
       <main className={style.main}>

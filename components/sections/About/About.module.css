@@ -11,10 +11,11 @@
   align-items: center;
 }
 
-.header {
+.headerText {
   display: table; /* fit-content width */
   font-size: 1.1em;
-  font-weight: bold;
+  font-weight: 1000;
+  letter-spacing: 1px;
   margin: 0 auto;
   margin-bottom: 1.5em;
   text-align: center;
