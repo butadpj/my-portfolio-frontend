@@ -1,11 +1,11 @@
 import Head from "next/head";
 import Navbar from "../components/Navbar";
-import Home from "../components/Home";
-import About from "../components/About";
-import Aims from "../components/Aims";
-import Project from "../components/Projects";
-import Contact from "../components/Contact";
-import Footer from "../components/Footer";
+import Home from "../components/sections/Home";
+import About from "../components/sections/About";
+import Aims from "../components/sections/Aims";
+import Projects from "../components/sections/Projects";
+import Contact from "../components/sections/Contact";
+import Footer from "../components/sections/Footer";
 import PWAInstallerAlert from "../components/PWAInstallerAlert";
 import UserStatus from "../components/UserStatus";
 
@@ -54,7 +54,7 @@ const index = ({ home, about }) => {
       <Home data={home} />
       <About data={about} />
       <Aims />
-      <Project />
+      <Projects />
       <Contact />
       <Footer />
     </>
