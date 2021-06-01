@@ -1,13 +1,15 @@
 import "./globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import TokenContextProvider from "../context/TokenContext";
-
+import SectionDataContextProvider from "../context/SectionDataContext";
 // import App from 'next/app'
 
 function MyApp({ Component, pageProps }) {
   return (
     <TokenContextProvider>
-      <Component {...pageProps} />
+      <SectionDataContextProvider>
+        <Component {...pageProps} />
+      </SectionDataContextProvider>
     </TokenContextProvider>
   );
 }
