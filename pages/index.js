@@ -1,29 +1,36 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
-import Navbar from "../components/Navbar";
-import Home from "../components/sections/Home";
-import About from "../components/sections/About";
-import Aims from "../components/sections/Aims";
-import Projects from "../components/sections/Projects";
-import Contact from "../components/sections/Contact";
-import Footer from "../components/sections/Footer";
-import PWAInstallerAlert from "../components/PWAInstallerAlert";
-import UserStatus from "../components/UserStatus";
 import Loader from "../components/Loader";
+import PWAInstallerAlert from "../components/PWAInstallerAlert";
+import PortfolioView from "../views/PortfolioView";
+
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+import { SectionDataContext } from "../context/SectionDataContext";
+
 const index = ({ home, about }) => {
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
+
+  const [state, dispatch] = useContext(SectionDataContext);
 
   useEffect(() => {
-    AOS.init({ duration: 800, offset: 100 });
-    AOS.refresh();
-    let timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+    let isMounted = true;
+    let timer;
+    // Show the loader for (n) milliseconds
+    if (isMounted) {
+      // Initialize AOS
+      AOS.init({ duration: 800, offset: 100 });
+      AOS.refresh();
+
+      timer = setTimeout(() => {
+        // setIsLoading(false);
+        dispatch({ type: "DATA_INIT" });
+      }, 1000);
+    }
 
     return () => {
+      isMounted = false;
       clearTimeout(timer);
     };
   }, []);
@@ -65,21 +72,11 @@ const index = ({ home, about }) => {
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
-
-      {isLoading ? (
-        <Loader loading={isLoading} />
+      <PWAInstallerAlert />
+      {state.isLoading ? (
+        <Loader />
       ) : (
-        <>
-          <PWAInstallerAlert />
-          <Navbar />
-          <UserStatus />
-          <Home data={home} />
-          <About data={about} />
-          <Aims />
-          <Projects />
-          <Contact />
-          <Footer />
-        </>
+        <PortfolioView home={home} about={about} />
       )}
     </>
   );
@@ -103,15 +100,9 @@ export const getStaticProps = async () => {
       )
     );
 
-    if (!responses) {
-      return {
-        notFound: true,
-      };
-    }
-
     return {
       props: { home: responses[0], about: responses[1] },
-      revalidate: 30, //seconds
+      revalidate: 40, //seconds
     };
   } catch (err) {
     console.log(err);
