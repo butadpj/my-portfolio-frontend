@@ -19,6 +19,7 @@ const Projects = () => {
             </div>
           </div>
           <SingleProject />
+          <hr className={style.endLine} />
         </main>
         <div className={style.jsChallenge}></div>
       </div>
