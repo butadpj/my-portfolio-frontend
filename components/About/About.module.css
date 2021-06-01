@@ -11,28 +11,36 @@
   align-items: center;
 }
 
-.main > * {
-  margin: 1.5rem 0;
-}
-
 .header {
+  display: table; /* fit-content width */
   font-size: 1.1em;
   font-weight: bold;
-  margin-bottom: 1.3em;
+  margin: 0 auto;
+  margin-bottom: 1.5em;
   text-align: center;
   color: var(--dark);
-  text-decoration: underline;
-  text-underline-offset: 0.3em;
+
+  /* Udjastable underline */
+  background-image: linear-gradient(var(--dark), var(--dark));
+  background-position: bottom center; /*Adjust the background-position to move the line*/
+  background-size: 70% 0.5rem; /*Adjust the background size to control length and height*/
+  background-repeat: no-repeat;
+  padding-bottom: 1.1rem; /* this can also control the position */
+
+  /* text-decoration: underline;
+  text-underline-offset: 0.3em; */
 }
 
 .aboutText {
-  font-size: 0.7em;
+  font-size: 0.65em;
   font-weight: 600;
   letter-spacing: 1px;
+  line-height: 1.6em;
   text-align: left;
   color: var(--dark-1);
   width: min(95%, 45ch);
   white-space: pre-wrap;
+  margin-bottom: 1.5em;
 }
 
 .profile {
@@ -48,44 +56,42 @@
 }
 
 .profileName {
-  font-size: 0.55em;
+  font-size: 0.6em;
   margin-top: 0.5em;
   font-weight: bold;
   color: var(--dark);
 }
 
-@media screen and (max-width: 280px) {
-  .aboutText {
-    margin-left: 0;
-  }
-}
-
 @media screen and (min-width: 60rem) {
   .about {
-    padding-left: 1.5em;
-    padding-right: 1.5em;
+    padding-left: 2em;
+    padding-right: 2em;
   }
 
   .header {
-    text-align: left;
+    margin-left: 0;
     font-size: 1.2em;
+
+    /* Udjastable underline */
+    background-image: linear-gradient(var(--dark), var(--dark));
+    background-position: bottom left; /*Adjust the background-position to move the line*/
+    background-size: 45% 0.5rem; /*Adjust the background size to control length and height*/
+    background-repeat: no-repeat;
+    padding-bottom: 1.1rem; /* this can also control the position */
   }
 
   .main {
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-end;
-  }
-
-  .main > * {
-    margin-top: 1em;
+    align-items: center;
   }
 
   .aboutText {
-    width: 50ch;
-    font-weight: bold;
+    margin-bottom: 0;
+  }
 
-    margin-left: 0;
+  .profile {
+    margin-top: 0;
   }
 
   .profile img {

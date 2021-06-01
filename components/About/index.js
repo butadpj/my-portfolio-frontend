@@ -55,8 +55,8 @@ const About = ({ data }) => {
         <div className={style.profile}>
           <Image
             src={displayPicture}
-            width={100}
-            height={100}
+            width={110}
+            height={110}
             className={style.profileImg}
           />
           <div className={style.profileName}>{personName}</div>
