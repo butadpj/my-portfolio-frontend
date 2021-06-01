@@ -46,6 +46,8 @@ const PWAInstallerAlert = () => {
   };
 
   const appInstalled = () => {
+    // Hide the install button
+    closeInstallPrompt();
     // Clear the deferredPrompt so it can be garbage collected
     deferredPrompt = null;
     // Optionally, send analytics event to indicate successful install
