@@ -12,6 +12,7 @@ const Navbar = () => {
   const [navLogoSrc, setNavLogoSrc] = useState("/images/logo/logo-nav@2x.png");
   const scrollY = useScrollPosition(10);
   const navBar = useRef(null);
+  const navContent = useRef(null);
   const navLinks = useRef(null);
 
   const handleMouseLeave = () => {
@@ -20,31 +21,31 @@ const Navbar = () => {
 
   useEffect(() => {
     if (scrollY >= 150) {
-      navBar.current.classList.add("navBarWhite");
+      navBar.current.classList.add(style["navBarWhite"]);
       setNavLogoSrc("/images/logo/logo-nav@2x.png");
     } else {
-      navBar.current.classList.remove("navBarWhite");
+      navBar.current.classList.remove(style["navBarWhite"]);
       setNavLogoSrc("/images/logo/logo-nav-light@2x.png");
     }
   }, [scrollY]);
 
   useEffect(() => {
     if (navShow) {
-      navLinks.current.classList.add("navLinksShow");
-      navLinks.current.addEventListener("mouseleave", handleMouseLeave);
+      navLinks.current.classList.add(style["navLinksShow"]);
+      navContent.current.addEventListener("mouseleave", handleMouseLeave);
     } else {
-      navLinks.current.classList.remove("navLinksShow");
+      navLinks.current.classList.remove(style["navLinksShow"]);
     }
     return () => {
       if (navShow) {
-        navLinks.current.removeEventListener("mouseleave", handleMouseLeave);
+        navContent.current.removeEventListener("mouseleave", handleMouseLeave);
       }
     };
   }, [navShow]);
 
   return (
     <nav className={style.navbar} ref={navBar}>
-      <div className={style.navContent}>
+      <div className={style.navContent} ref={navContent}>
         <Image
           src={navLogoSrc}
           alt="navLogo"
@@ -54,7 +55,7 @@ const Navbar = () => {
           className={style.navLogo}
           onClick={() => scroll.scrollToTop()}
         />
-        <div className={`${style.navLinks} `} ref={navLinks}>
+        <div className={style.navLinks} ref={navLinks}>
           <div className={style.sectionLinks}>
             <Link
               activeClass={style.active}
