@@ -45,7 +45,12 @@ const Contact = () => {
               className={style.textArea}
             ></textarea>
           </div>
-          <Button variant="outlined" className="btn" size="large" type="submit">
+          <Button
+            variant="outlined"
+            className="btn samp"
+            size="large"
+            type="submit"
+          >
             Submit
           </Button>
         </form>

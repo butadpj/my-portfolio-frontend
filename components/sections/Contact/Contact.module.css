@@ -19,7 +19,7 @@
   /* Adjustable underline */
   background-image: linear-gradient(var(--dark), var(--dark));
   background-position: bottom center; /*Adjust the background-position to move the line*/
-  background-size: 75% 0.5rem; /*Adjust the background size to control length and height*/
+  background-size: 60% 0.5rem; /*Adjust the background size to control length and height*/
   background-repeat: no-repeat;
   padding-bottom: 1.1rem; /* this can also control the position */
 }
@@ -68,6 +68,10 @@
   font-family: var(--primary-font);
   font-style: italic;
   font-size: 1.1em;
+}
+
+.samp {
+  font-size: 2em !important;
 }
 
 @media screen and (max-width: 360px) {
