@@ -1,6 +1,6 @@
 .contact {
-  background: var(--dark-2);
-  color: var(--light);
+  background: var(--light);
+  color: var(--dark);
   font-size: 2rem;
   text-align: center;
   padding: 2em 1.5em;
@@ -13,10 +13,13 @@
   text-transform: uppercase;
   letter-spacing: 0.35rem;
   margin-bottom: 1em;
+  font-weight: 1000;
+  letter-spacing: 2px;
+
   /* Adjustable underline */
-  background-image: linear-gradient(var(--light), var(--light));
+  background-image: linear-gradient(var(--dark), var(--dark));
   background-position: bottom center; /*Adjust the background-position to move the line*/
-  background-size: 75% 0.6rem; /*Adjust the background size to control length and height*/
+  background-size: 75% 0.5rem; /*Adjust the background size to control length and height*/
   background-repeat: no-repeat;
   padding-bottom: 1.1rem; /* this can also control the position */
 }
@@ -24,7 +27,7 @@
 .subText {
   font-size: 0.65em;
   font-style: italic;
-  color: var(--light-3);
+  color: var(--dark-1);
   margin-bottom: 1.5em;
 }
 
@@ -36,13 +39,14 @@
 }
 
 .formInputs > * {
-  background: var(--shade-brown);
-  color: var(--light);
+  background: var(--light);
+  color: var(--dark);
   font-size: 0.65em;
   font-family: var(--primary-font);
   padding: 0.8em;
   padding-left: 0.8em;
   border: none;
+  border: 1px solid var(--dark);
   margin-bottom: 1em;
   outline: none;
   transition: var(--transition-1);
@@ -50,14 +54,14 @@
 }
 
 .formInputs > *::placeholder {
-  color: var(--light-3);
+  color: var(--dark-2);
   font-weight: 600;
 }
 
 .formInputs > *:focus {
-  border: 2px solid var(--light);
+  border: 2px solid var(--dark);
   margin-bottom: 1.5em;
-  box-shadow: var(--shadow-light);
+  box-shadow: var(--shadow-dark);
 }
 
 .textArea::placeholder {

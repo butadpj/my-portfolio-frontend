@@ -37,6 +37,7 @@ a {
 .btn {
   font-family: Segoe UI !important;
   color: var(--dark) !important;
+  border: 1px solid var(--dark) !important;
   font-weight: bold !important;
 }
 
