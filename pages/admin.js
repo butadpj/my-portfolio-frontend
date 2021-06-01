@@ -86,7 +86,7 @@ const admin = () => {
       //? LOCAL STORAGE
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
-      
+
       dispatch({
         type: "LOGOUT",
       });
