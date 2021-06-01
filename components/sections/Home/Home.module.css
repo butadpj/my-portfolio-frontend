@@ -23,7 +23,8 @@
   text-align: left;
   text-transform: uppercase;
   width: fit-content;
-  font-weight: bold;
+  font-weight: 1000;
+  letter-spacing: 1px;
 }
 
 .mainTextPronoun {
