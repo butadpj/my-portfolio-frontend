@@ -1,6 +1,6 @@
 .footer {
   position: relative;
-  background: var(--shade-brown);
+  background: var(--dark);
   color: var(--light);
   font-size: 2rem;
   text-align: center;
@@ -19,16 +19,17 @@
   transform: translate(-50%, -50%);
   font-size: 1rem;
   font-weight: bold;
-  color: var(--light-3);
+  color: var(--dark);
   cursor: pointer;
 }
 
 .scrollTopIcon {
   background: var(--light);
+  box-shadow: var(--shadow-dark);
   width: min-content;
   padding: 0.2em 0.5em;
   border-radius: 30%;
-  color: var(--shade-brown);
+  color: var(--dark);
   font-size: 2em;
   margin: 0 auto;
   margin-top: 0.5rem;
@@ -46,11 +47,12 @@
 
 .contacts {
   font-size: 0.5em;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .contacts > * {
   margin: 1em 0;
+  letter-spacing: 1px;
 }
 
 .footerLogo {
@@ -59,5 +61,6 @@
 
 .footerLogo p {
   font-size: 0.5em;
-  font-weight: 600;
+  font-weight: bold;
+  letter-spacing: 0.5px;
 }
