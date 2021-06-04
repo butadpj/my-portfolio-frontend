@@ -4,7 +4,9 @@ import { reducer } from "../reducers/sectionDataReducer";
 export const SectionDataContext = createContext();
 
 const initialState = {
-  isLoading: true,
+  isLoading: true, // Loading state for data fetch
+
+  // Data from each section
 };
 
 const SectionDataContextProvider = (props) => {

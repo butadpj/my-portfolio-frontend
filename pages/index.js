@@ -10,23 +10,23 @@ import "aos/dist/aos.css";
 import { SectionDataContext } from "../context/SectionDataContext";
 
 const index = ({ home, about }) => {
-  // const [isLoading, setIsLoading] = useState(true);
-
   const [state, dispatch] = useContext(SectionDataContext);
+  const loadingState = state.isLoading;
 
   useEffect(() => {
     let isMounted = true;
+    let showLoaderTime = 1000;
     let timer;
-    // Show the loader for (n) milliseconds
+
     if (isMounted) {
       // Initialize AOS
       AOS.init({ duration: 800, offset: 100 });
       AOS.refresh();
 
+      // Show the loader for (n) milliseconds
       timer = setTimeout(() => {
-        // setIsLoading(false);
         dispatch({ type: "DATA_INIT" });
-      }, 1000);
+      }, showLoaderTime);
     }
 
     return () => {
@@ -34,6 +34,7 @@ const index = ({ home, about }) => {
       clearTimeout(timer);
     };
   }, []);
+
   return (
     <>
       <Head>
@@ -73,11 +74,7 @@ const index = ({ home, about }) => {
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
       <PWAInstallerAlert />
-      {state.isLoading ? (
-        <Loader />
-      ) : (
-        <PortfolioView home={home} about={about} />
-      )}
+      {loadingState ? <Loader /> : <PortfolioView home={home} about={about} />}
     </>
   );
 };
