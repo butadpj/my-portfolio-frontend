@@ -9,7 +9,9 @@ const smoothScrollDuration = 600;
 
 const Navbar = () => {
   const [navShow, setNavShow] = useState(false);
-  const [navLogoSrc, setNavLogoSrc] = useState("/images/logo/logo-nav@2x.png");
+  const [navLogoSrc, setNavLogoSrc] = useState(
+    "/images/logo/logo-nav-mobile-dark@2x.png"
+  );
   const scrollY = useScrollPosition(10);
   const navBar = useRef(null);
   const navContent = useRef(null);
@@ -22,10 +24,10 @@ const Navbar = () => {
   useEffect(() => {
     if (scrollY >= 150) {
       navBar.current.classList.add(style["navBarWhite"]);
-      setNavLogoSrc("/images/logo/logo-nav@2x.png");
+      setNavLogoSrc("/images/logo/logo-nav-mobile-dark@2x.png");
     } else {
       navBar.current.classList.remove(style["navBarWhite"]);
-      setNavLogoSrc("/images/logo/logo-nav-light@2x.png");
+      setNavLogoSrc("/images/logo/logo-nav-mobile-light@2x.png");
     }
   }, [scrollY]);
 

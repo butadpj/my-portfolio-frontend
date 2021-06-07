@@ -17,7 +17,7 @@ export const reducer = (state, action) => {
     return {
       ...state,
       selectedVersionId: {
-        ...state.selectedVersions,
+        ...state.selectedVersionId,
         homeId: action.payload.homeId,
         aboutId: action.payload.aboutId,
       },
