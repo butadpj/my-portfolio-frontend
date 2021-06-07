@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Head from "next/head";
 import { useState, useContext } from "react";
 import { TokenContext } from "../context/TokenContext";
 import useSetLocalItem from "../hooks/useSetLocalItem";
@@ -7,8 +8,9 @@ import Login from "../components/Login";
 
 const admin = () => {
   const [loginInfo, setLoginInfo] = useState({ username: "", password: "" });
-  const [attemptCounter, setAttemptCounter] = useState(1);
-  const [state, dispatch] = useContext(TokenContext);
+
+  const [attemptCounter, setAttemptCounter] = useState(1); // Login attempt counter
+  const [tokenState, tokenDispatch] = useContext(TokenContext); // TokenContext
   const router = useRouter();
 
   const handleInputChange = (e) => {
@@ -26,11 +28,11 @@ const admin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log("Username: ", loginInfo.username);
-    // console.log("Password: ", loginInfo.password);
+
     try {
       const getTokenUrl = `${process.env.devHost}/api/token/`;
 
+      // Get a token from /api/token
       const res = await fetch(getTokenUrl, {
         method: "POST",
         headers: {
@@ -42,22 +44,35 @@ const admin = () => {
         }),
       });
 
-      const data = await res.json(); // Refresh & Access Token
+      const data = await res.json(); // data -> Refresh & Access Token
+
+      // If Login -> SUCCESS
       if (data.access && data.refresh) {
         //? LOCAL STORAGE
-        useSetLocalItem("accessToken", data.access, 300); //Expires in 5 mins
-        useSetLocalItem("refreshToken", data.refresh, 300); //Expires in 5 mins
-        dispatch({
+        // Put the token that expires in 300 seconds (5 mins) in local storage
+        useSetLocalItem("accessToken", data.access, 300);
+        useSetLocalItem("refreshToken", data.refresh, 300);
+
+        // Save the tokens to state
+        tokenDispatch({
           type: "LOGIN_SUCCESS",
           payload: { accessToken: data.access, refreshToken: data.refresh },
         });
-        setAttemptCounter(0);
-        router.push("/");
-      } else {
-        setLoginInfo({ ...loginInfo, password: "" });
+
+        setAttemptCounter(0); // Reset the attempt counter
+
+        router.push("/"); // Redirect to home page
+      }
+      // If Login -> FAILED
+      else {
+        setLoginInfo({ ...loginInfo, password: "" }); // Reset password field
+
+        // Add 1 to counter
         setAttemptCounter((prev) => {
           return prev + 1;
         });
+
+        // Bruh moments login attempt messages
         if (attemptCounter === 1) alert("I'm sorry but you're not Paul");
         if (attemptCounter === 2) alert("You can't enter if you're not Paul");
         if (attemptCounter === 3) alert("Bruhh... Seriously!!!??");
@@ -79,19 +94,20 @@ const admin = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          refresh_token: state.refreshToken, //? LOCAL STORAGE
+          refresh_token: tokenState.refreshToken, // Get the refresh token from memory
         }),
       });
 
-      //? LOCAL STORAGE
+      // Remove the tokens from local storage
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
 
-      dispatch({
+      // Reset tokenContext states
+      tokenDispatch({
         type: "LOGOUT",
       });
 
-      router.push("/");
+      router.push("/"); // Redirect to home page
     } catch (err) {
       alert("There's an error occured. Don't worry it's not your fault");
       console.log(err);
@@ -99,13 +115,18 @@ const admin = () => {
   };
 
   return (
-    <Login
-      state={state}
-      handleInputChange={handleInputChange}
-      handleSubmit={handleSubmit}
-      handleLogout={handleLogout}
-      loginInfo={loginInfo}
-    />
+    <>
+      <Head>
+        <title>Portfolio | Admin - Login</title>
+      </Head>
+      <Login
+        state={tokenState}
+        handleInputChange={handleInputChange}
+        handleSubmit={handleSubmit}
+        handleLogout={handleLogout}
+        loginInfo={loginInfo}
+      />
+    </>
   );
 };
 

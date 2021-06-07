@@ -7,10 +7,10 @@ const initialState = {
   isLoading: true, // Loading state for data fetch
   selectedVersion: "v1",
   selectedVersionId: {
-    homeId: null,
-    aboutId: null,
-    projectsId: null,
-    contactId: null,
+    homeId: 1,
+    aboutId: 1,
+    projectsId: 1,
+    contactId: 1,
   },
   // Data from each section
 };

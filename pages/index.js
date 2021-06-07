@@ -1,4 +1,5 @@
 import { useEffect, useContext } from "react";
+
 import Head from "next/head";
 import Loader from "../components/Loader";
 import PWAInstallerAlert from "../components/PWAInstallerAlert";
@@ -10,78 +11,50 @@ import "aos/dist/aos.css";
 import { SectionDataContext } from "../context/SectionDataContext";
 import useGetVersion from "../hooks/useGetVersion";
 
-const index = ({ home, about }) => {
-  const [state, dispatch] = useContext(SectionDataContext);
-  const loadingState = state.isLoading;
+let SHOWLOADERTIME = 1000; // setTimeOut delay
 
-  let homeData = useGetVersion(state.selectedVersion, home);
-  let aboutData = useGetVersion(state.selectedVersion, about);
+const index = ({ home, about }) => {
+  const [sectionDataState, sectionDataDispatch] =
+    useContext(SectionDataContext); // SectionDataContext
+
+  const loadingState = sectionDataState.isLoading;
+
+  // Get the specified data version (in SectionDataContext)
+  let homeData = useGetVersion(sectionDataState.selectedVersion, home);
+  let aboutData = useGetVersion(sectionDataState.selectedVersion, about);
 
   useEffect(() => {
-    let isMounted = true;
-    let showLoaderTime = 1000;
-    let timer;
+    // Initialize AOS
+    AOS.init({ duration: 800, offset: 100 });
+    AOS.refresh();
 
-    if (isMounted) {
-      // Initialize AOS
-      AOS.init({ duration: 800, offset: 100 });
-      AOS.refresh();
+    // Hide the loader after (n) milliseconds
+    let timer = setTimeout(() => {
+      sectionDataDispatch({ type: "DATA_INIT" }); // isLoading state -> False
 
-      // Show the loader for (n) milliseconds
-      timer = setTimeout(() => {
-        dispatch({ type: "DATA_INIT" });
-        dispatch({
-          type: "DATA_SECTION_VERSION_ID",
-          payload: { homeId: homeData.id, aboutId: aboutData.id },
-        });
-      }, showLoaderTime);
-    }
+      // Get the id of specified section data version (for fetch purposes)
+      sectionDataDispatch({
+        type: "DATA_SECTION_VERSION_ID",
+        payload: {
+          homeId: homeData ? homeData.id : 1,
+          aboutId: aboutData ? aboutData.id : 1,
+        },
+      });
+    }, SHOWLOADERTIME);
 
+    // Clear timeout if the component will unmount
     return () => {
-      isMounted = false;
       clearTimeout(timer);
     };
   }, []);
 
   return (
     <>
-      <Head>
-        <meta charset="utf-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
-        />
-        <meta name="description" content="My personal web dev portfolio" />
-        <meta
-          name="keywords"
-          content="Portfolio, Web development portfolio, I'm Paul, Paul John Butad's Portfolio"
-        />
-        <title>I'm Paul - Software Developer</title>
-
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-        <meta name="msapplication-TileColor" content="#da532c" />
-        <meta name="theme-color" content="#ffffff"></meta>
-      </Head>
       <PWAInstallerAlert />
+      <Head>
+        <title>Portfolio | Home</title>
+      </Head>
+
       {loadingState ? (
         <Loader />
       ) : (
@@ -93,7 +66,7 @@ const index = ({ home, about }) => {
 
 export const getStaticProps = async () => {
   let fetchUrl = `${process.env.devHost}/api/`;
-  let fetchApiVersion = "v1/";
+  let fetchApiVersion = "v1/"; // api version
   let fetchSectionUrls = ["home/", "about/"];
   try {
     // Single URL fetch
