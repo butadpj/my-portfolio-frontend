@@ -6,7 +6,12 @@ export const SectionDataContext = createContext();
 const initialState = {
   isLoading: true, // Loading state for data fetch
   selectedVersion: "v1",
-  selectedVersionId: { homeId: 1, aboutId: 1, projectsId: 1, contactId: 1 },
+  selectedVersionId: {
+    homeId: null,
+    aboutId: null,
+    projectsId: null,
+    contactId: null,
+  },
   // Data from each section
 };
 

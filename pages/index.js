@@ -30,7 +30,6 @@ const index = ({ home, about }) => {
       // Show the loader for (n) milliseconds
       timer = setTimeout(() => {
         dispatch({ type: "DATA_INIT" });
-
         dispatch({
           type: "DATA_SECTION_VERSION_ID",
           payload: { homeId: homeData.id, aboutId: aboutData.id },

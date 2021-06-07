@@ -24,6 +24,7 @@ const HomeLogic = (
     useContext(SectionDataContext);
 
   const fetchId = sectionDataState.selectedVersionId.homeId;
+
   let smallTextValue = "";
   let largeTextValue = "";
   let careerTitleValue = "";
@@ -65,18 +66,23 @@ const HomeLogic = (
   };
 
   const toEditFetch = async (toEdit, toEditValue) => {
-    const res = await fetch(`${process.env.devHost}/api/v1/home/${fetchId}/`, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${tokenState.accessToken}`, //? LOCAL STORAGE
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ [toEdit]: toEditValue }),
-    });
+    if (fetchId) {
+      const res = await fetch(
+        `${process.env.devHost}/api/v1/home/${fetchId}/`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${tokenState.accessToken}`, //? LOCAL STORAGE
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ [toEdit]: toEditValue }),
+        }
+      );
 
-    const data = await res.json();
+      const data = await res.json();
 
-    console.log(data);
+      console.log(data);
+    }
   };
 
   const handleSubmitTextValue = (textRef, textValue, toEditValue) => {
@@ -128,7 +134,7 @@ const HomeLogic = (
     if (tokenState.isAuthenticated) mainRef.current.style.pointerEvents = "all";
     textValuesInit();
     textEventsInit();
-  }, []);
+  }, [fetchId]);
 
   return {
     chosenParam,
