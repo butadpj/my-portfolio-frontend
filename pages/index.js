@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import Head from "next/head";
 import Loader from "../components/Loader";
 import PWAInstallerAlert from "../components/PWAInstallerAlert";
@@ -8,10 +8,14 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 import { SectionDataContext } from "../context/SectionDataContext";
+import useGetVersion from "../hooks/useGetVersion";
 
 const index = ({ home, about }) => {
   const [state, dispatch] = useContext(SectionDataContext);
   const loadingState = state.isLoading;
+
+  let homeData = useGetVersion(state.selectedVersion, home);
+  let aboutData = useGetVersion(state.selectedVersion, about);
 
   useEffect(() => {
     let isMounted = true;
@@ -26,6 +30,11 @@ const index = ({ home, about }) => {
       // Show the loader for (n) milliseconds
       timer = setTimeout(() => {
         dispatch({ type: "DATA_INIT" });
+
+        dispatch({
+          type: "DATA_SECTION_VERSION_ID",
+          payload: { homeId: homeData.id, aboutId: aboutData.id },
+        });
       }, showLoaderTime);
     }
 
@@ -74,7 +83,11 @@ const index = ({ home, about }) => {
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
       <PWAInstallerAlert />
-      {loadingState ? <Loader /> : <PortfolioView home={home} about={about} />}
+      {loadingState ? (
+        <Loader />
+      ) : (
+        <PortfolioView home={homeData} about={aboutData} />
+      )}
     </>
   );
 };
