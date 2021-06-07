@@ -12,8 +12,8 @@ const PortfolioView = ({ home, about }) => {
     <>
       <Navbar />
       <UserStatus />
-      <Home data={home} />
-      <About data={about} />
+      <Home homeData={home} />
+      <About aboutData={about} />
       <Aims />
       <Projects />
       <Contact />
