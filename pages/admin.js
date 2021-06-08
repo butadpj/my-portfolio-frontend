@@ -117,7 +117,7 @@ const admin = () => {
   return (
     <>
       <Head>
-        <title>Portfolio | Admin - Login</title>
+        <title>Paul's Portfolio | Admin</title>
       </Head>
       <Login
         state={tokenState}
