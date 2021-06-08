@@ -6,6 +6,16 @@ import { faLock, faUnlock } from "@fortawesome/free-solid-svg-icons";
 import { TokenContext } from "../../../context/TokenContext";
 import { SectionDataContext } from "../../../context/SectionDataContext";
 
+let SMALL_TEXT_VALUE = "";
+let LARGE_TEXT_VALUE = "";
+let CAREER_TITLE_VALUE = "";
+
+let OLD_SMALL_TEXT_VALUE = "";
+let OLD_LARGE_TEXT_VALUE = "";
+let OLD_CAREER_TITLE_VALUE = "";
+
+let SAVE_TIME_DELAY = 3000;
+
 const HomeLogic = (
   scrollLockRef,
   mainRef,
@@ -17,39 +27,36 @@ const HomeLogic = (
   const scrollY = useScrollPosition(10);
   const [isScrollLock, setIsScrollLock] = useState(false);
   const [scrollText, setScrollText] = useState(
-    <FontAwesomeIcon icon={faLock} />
+    <FontAwesomeIcon icon={faLock} color="var(--dark)" />
   );
   const [tokenState, tokenDispatch] = useContext(TokenContext);
   const [sectionDataState, sectionDataDispatch] =
     useContext(SectionDataContext);
 
+  // ID of the section's selected version
   const fetchId = sectionDataState.selectedVersionId.homeId;
-
-  let smallTextValue = "";
-  let largeTextValue = "";
-  let careerTitleValue = "";
-
-  const toggleScrollLock = () => {
-    // If the scroll is lock, then unlock it
-    if (isScrollLock) {
-      document.body.style.overflow = "auto";
-      setIsScrollLock(false);
-
-      setScrollText(<FontAwesomeIcon icon={faLock} />); // Scroll is lockable
-      return;
-    }
-    // If the scroll is not lock, then lock it
-    document.body.style.overflow = "hidden";
-    setIsScrollLock(true);
-
-    setScrollText(<FontAwesomeIcon icon={faUnlock} />); // Scroll is unlockable
-  };
 
   const unlockScroll = () => {
     document.body.style.overflow = "auto";
     setIsScrollLock(false);
 
-    setScrollText(<FontAwesomeIcon icon={faLock} />); // Scroll is lockable
+    setScrollText(<FontAwesomeIcon icon={faLock} color="var(--dark)" />); // Scroll is lockable
+  };
+
+  const lockScroll = () => {
+    document.body.style.overflow = "hidden";
+    setIsScrollLock(true);
+    setScrollText(<FontAwesomeIcon icon={faUnlock} color="var(--light-1)" />); // Scroll is unlockable
+  };
+
+  const toggleScrollLock = () => {
+    // If the scroll is lock, then unlock it
+    if (isScrollLock) {
+      unlockScroll();
+      return;
+    }
+    // If the scroll is not lock, then lock it
+    lockScroll();
   };
 
   const makeEditable = (content) => {
@@ -65,57 +72,101 @@ const HomeLogic = (
     if (text === "careerTitle") makeEditable(careerTitleRef);
   };
 
-  const toEditFetch = async (toEdit, toEditValue) => {
+  const contentEditableFetch = async (property, value) => {
+    let fetchUrl = `${process.env.devHost}/api/v1/home/${fetchId}/`;
+
     if (fetchId) {
-      const res = await fetch(
-        `${process.env.devHost}/api/v1/home/${fetchId}/`,
-        {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${tokenState.accessToken}`, //? LOCAL STORAGE
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ [toEdit]: toEditValue }),
-        }
-      );
+      const res = await fetch(fetchUrl, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${tokenState.accessToken}`, //? LOCAL STORAGE
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ [property]: value }),
+      });
 
       const data = await res.json();
 
       console.log(data);
+    } else {
+      console.log("There's something wrong with fetchId");
     }
   };
 
-  const handleSubmitTextValue = (textRef, textValue, toEditValue) => {
-    textRef.current.textContent = textValue.trim(); // Trime the whitespace
-    toEditFetch(toEditValue, textValue);
+  // Called in refsEventsInit()
+  const handleSubmitTextValue = (
+    textRef,
+    textValue,
+    oldTextValue,
+    property
+  ) => {
+    // Only save changes when there's a change in text values
+    if (textValue !== oldTextValue) {
+      textRef.current.textContent = textValue.trim(); // Trime the whitespace
+      contentEditableFetch(property, textValue);
+    }
   };
 
   const textValuesInit = () => {
-    smallTextValue = smallTextRef.current.textContent;
-    largeTextValue = largeTextRef.current.textContent;
-    careerTitleValue = careerTitleRef.current.textContent;
+    SMALL_TEXT_VALUE = smallTextRef.current.textContent;
+    LARGE_TEXT_VALUE = largeTextRef.current.textContent;
+    CAREER_TITLE_VALUE = careerTitleRef.current.textContent;
+
+    OLD_SMALL_TEXT_VALUE = SMALL_TEXT_VALUE;
+    OLD_LARGE_TEXT_VALUE = LARGE_TEXT_VALUE;
+    OLD_CAREER_TITLE_VALUE = CAREER_TITLE_VALUE;
   };
 
-  const textEventsInit = () => {
+  const refsEventsInit = () => {
     smallTextRef.current.addEventListener("input", () => {
-      smallTextValue = smallTextRef.current.textContent;
+      SMALL_TEXT_VALUE = smallTextRef.current.textContent;
+
+      // Wait for 3 seconds before saving the value
+      setTimeout(() => {
+        OLD_SMALL_TEXT_VALUE = SMALL_TEXT_VALUE;
+      }, SAVE_TIME_DELAY);
     });
     smallTextRef.current.addEventListener("focusout", () =>
-      handleSubmitTextValue(smallTextRef, smallTextValue, "small_text")
+      handleSubmitTextValue(
+        smallTextRef,
+        SMALL_TEXT_VALUE,
+        OLD_SMALL_TEXT_VALUE,
+        "small_text"
+      )
     );
 
     largeTextRef.current.addEventListener("input", () => {
-      largeTextValue = largeTextRef.current.textContent;
+      LARGE_TEXT_VALUE = largeTextRef.current.textContent;
+
+      // Wait for 3 seconds before saving the value
+      setTimeout(() => {
+        OLD_LARGE_TEXT_VALUE = LARGE_TEXT_VALUE;
+      }, SAVE_TIME_DELAY);
     });
     largeTextRef.current.addEventListener("focusout", () =>
-      handleSubmitTextValue(largeTextRef, largeTextValue, "large_text")
+      handleSubmitTextValue(
+        largeTextRef,
+        LARGE_TEXT_VALUE,
+        OLD_LARGE_TEXT_VALUE,
+        "large_text"
+      )
     );
 
     careerTitleRef.current.addEventListener("input", () => {
-      careerTitleValue = careerTitleRef.current.textContent;
+      CAREER_TITLE_VALUE = careerTitleRef.current.textContent;
+
+      // Wait for 3 seconds before saving the value
+      setTimeout(() => {
+        OLD_CAREER_TITLE_VALUE = CAREER_TITLE_VALUE;
+      }, SAVE_TIME_DELAY);
     });
     careerTitleRef.current.addEventListener("focusout", () =>
-      handleSubmitTextValue(careerTitleRef, careerTitleValue, "career_title")
+      handleSubmitTextValue(
+        careerTitleRef,
+        CAREER_TITLE_VALUE,
+        OLD_CAREER_TITLE_VALUE,
+        "career_title"
+      )
     );
   };
 
@@ -131,17 +182,16 @@ const HomeLogic = (
   }, [scrollY]);
 
   useEffect(() => {
+    // If the user is authenticated, contentEditable -> TRUE
     if (tokenState.isAuthenticated) mainRef.current.style.pointerEvents = "all";
-    textValuesInit();
-    textEventsInit();
+    textValuesInit(); // Initialize text values
+    refsEventsInit(); // Initialize text refs events
   }, [fetchId]);
 
   return {
     chosenParam,
     scrollText,
-    scrollY,
     toggleScrollLock,
-    unlockScroll,
     handleEditText,
   };
 };
