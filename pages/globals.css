@@ -64,6 +64,9 @@ a {
   --shade-blue: rgb(103, 120, 140, 1);
   --shade-blue-1: rgb(103, 150, 211, 1);
   --shade-blue-2: rgb(63, 127, 255, 1);
+
+  --shade-red: rgb(211, 34, 102);
+  --shade-green: rgb(57, 168, 76);
   /*! Color shades -- END*/
   /* ======== */
   /*? Font families  -- START*/
