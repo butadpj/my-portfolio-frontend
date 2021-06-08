@@ -13,7 +13,7 @@ import useGetVersion from "../hooks/useGetVersion";
 
 let SHOWLOADERTIME = 1000; // setTimeOut delay
 
-const index = ({ home, about }) => {
+const index = ({ home, about, projects }) => {
   const [sectionDataState, sectionDataDispatch] =
     useContext(SectionDataContext); // SectionDataContext
 
@@ -52,13 +52,13 @@ const index = ({ home, about }) => {
     <>
       <PWAInstallerAlert />
       <Head>
-        <title>Portfolio | Home</title>
+        <title>Paul's Portfolio | Home</title>
       </Head>
 
       {loadingState ? (
         <Loader />
       ) : (
-        <PortfolioView home={homeData} about={aboutData} />
+        <PortfolioView home={homeData} about={aboutData} projects={projects} />
       )}
     </>
   );
@@ -67,7 +67,7 @@ const index = ({ home, about }) => {
 export const getStaticProps = async () => {
   let fetchUrl = `${process.env.devHost}/api/`;
   let fetchApiVersion = "v1/"; // api version
-  let fetchSectionUrls = ["home/", "about/"];
+  let fetchSectionUrls = ["home/", "about/", "projects/"];
   try {
     // Single URL fetch
     // const res = await fetch(`http://127.0.0.1:8000/api/v1/home/`);
@@ -83,7 +83,11 @@ export const getStaticProps = async () => {
     );
 
     return {
-      props: { home: responses[0], about: responses[1] },
+      props: {
+        home: responses[0],
+        about: responses[1],
+        projects: responses[2],
+      },
       revalidate: 10, //seconds
     };
   } catch (err) {
