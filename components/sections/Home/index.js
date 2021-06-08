@@ -2,7 +2,6 @@ import { useRef } from "react";
 import style from "./Home.module.css";
 import Particles from "react-particles-js";
 import HomeLogic from "./HomeLogic";
-import { SectionDataContext } from "../../../context/SectionDataContext";
 
 const Home = ({ homeData }) => {
   const scrollLockRef = useRef(null);
@@ -10,23 +9,17 @@ const Home = ({ homeData }) => {
   const largeTextRef = useRef(null);
   const careerTitleRef = useRef(null);
   const mainRef = useRef(null);
-  // const [state, dispatch] = useContext(SectionDataContext);
 
-  const {
-    chosenParam,
-    scrollText,
-    scrollY,
-    toggleScrollLock,
-    unlockScroll,
-    handleEditText,
-  } = HomeLogic(
-    scrollLockRef,
-    mainRef,
-    smallTextRef,
-    largeTextRef,
-    careerTitleRef
-  );
+  const { chosenParam, scrollText, toggleScrollLock, handleEditText } =
+    HomeLogic(
+      scrollLockRef,
+      mainRef,
+      smallTextRef,
+      largeTextRef,
+      careerTitleRef
+    );
 
+  // SET DEFAULT DATA (FALL BACK) when server is down
   let smallText = homeData ? homeData.small_text : "I'm";
   let largeText = homeData ? homeData.large_text : "Paul";
   let careerTitle = homeData ? homeData.career_title : "Software Developer";
