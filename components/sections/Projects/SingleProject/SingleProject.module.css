@@ -16,8 +16,8 @@
 
 .date {
   color: var(--dark-2);
-  font-weight: bold;
-  font-size: 0.45em;
+  font-weight: 600;
+  font-size: 0.4em;
   letter-spacing: 0.7px;
   text-transform: uppercase;
 }
