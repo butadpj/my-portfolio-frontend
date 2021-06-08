@@ -7,7 +7,7 @@ import Projects from "../components/sections/Projects";
 import Contact from "../components/sections/Contact";
 import Footer from "../components/sections/Footer";
 
-const PortfolioView = ({ home, about }) => {
+const PortfolioView = ({ home, about, projects }) => {
   return (
     <>
       <Navbar />
@@ -15,7 +15,7 @@ const PortfolioView = ({ home, about }) => {
       <Home homeData={home} />
       <About aboutData={about} />
       <Aims />
-      <Projects />
+      <Projects projectsData={projects} />
       <Contact />
       <Footer />
     </>

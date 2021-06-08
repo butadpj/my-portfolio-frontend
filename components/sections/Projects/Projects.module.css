@@ -25,6 +25,10 @@
   background: var(--dark);
 }
 
+.main article:nth-child(2) {
+  padding-top: 0 !important;
+}
+
 .pinnedLine {
   display: flex;
   align-items: center;

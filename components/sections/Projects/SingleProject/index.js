@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import style from "./SingleProject.module.css";
 
 import EyeFollowing from "../../../EyeFollowing";
+import useDateFormat from "../../../../hooks/useDateFormat";
 
 const DATE = "October 26, 2020";
 const techStack = [
@@ -26,37 +27,47 @@ const techStack = [
   },
 ];
 
-const SingleProject = () => {
+const SingleProject = ({ data }) => {
+  console.log(data);
+  const {
+    title,
+    started_at,
+    currently_working_on,
+    finished_at,
+    description,
+    website_link,
+    github_link,
+    preview_image,
+    tech_stacks,
+  } = data;
+
   return (
     <article className={style.projectWrapper}>
-      <h3 className={style.title}>Nenetelecom</h3>
-      <p className={style.date}>{DATE} - PRESENT</p>
+      <h3 className={style.title}>{title}</h3>
+      <p className={style.date}>
+        {useDateFormat(started_at)} -{" "}
+        {currently_working_on ? "PRESENT" : useDateFormat(finished_at)}
+      </p>
       <div className={style.description}>
-        <p>
-          Full-stack installable ecommerce app for our own mobile phone retail
-          store.
-        </p>
+        <p>{description}</p>
       </div>
       <div className={style.links}>
         <div className={style.websiteLink}>
           <FontAwesomeIcon icon={faLink} />
-          <a href="https://www.nenetelecom.app" target="_blank">
+          <a href={`https://${website_link}`} target="_blank">
             Live Demo
           </a>
         </div>
         <div className={style.repoLink}>
           <FontAwesomeIcon icon={faCodeBranch} />
-          <a
-            href="https://github.com/butadpj/nenetelecom-final"
-            target="_blank"
-          >
+          <a href={`https://${github_link}`} target="_blank">
             Github Repo
           </a>
         </div>
       </div>
       <div data-aos="fade-up">
         <Image
-          src="/images/project-preview/nenetelecom-preview.png"
+          src={preview_image}
           width={800}
           height={484}
           layout="responsive"
@@ -68,7 +79,7 @@ const SingleProject = () => {
       <div className={style.techStack}>
         <h2>Tech stack:</h2>
         <div className={style.tsImages}>
-          {techStack.map((ts) => {
+          {tech_stacks.map((ts) => {
             return (
               <div key={ts.id}>
                 <img
