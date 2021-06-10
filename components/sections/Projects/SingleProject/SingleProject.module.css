@@ -83,7 +83,17 @@
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
   align-items: center;
+  justify-content: center;
   margin-top: 2rem;
+}
+
+.techImage {
+  width: 5rem;
+  margin: 0 auto;
+}
+
+.techImage img {
+  width: 100%;
 }
 
 .detailBtn {

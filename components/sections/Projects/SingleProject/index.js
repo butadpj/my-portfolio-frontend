@@ -81,7 +81,7 @@ const SingleProject = ({ data }) => {
         <div className={style.tsImages}>
           {tech_stacks.map((ts) => {
             return (
-              <div key={ts.id}>
+              <div key={ts.id} className={style.techImage}>
                 <img
                   src={`/images/tech-stack-images/ts-icon-${ts.stack_name}@2x.png`}
                   alt={`${ts.stack_name}-tech-stack-image`}

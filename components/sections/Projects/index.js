@@ -10,28 +10,55 @@ const Projects = ({ projectsData }) => {
       <div className={style.projectsWrapper}>
         <div data-aos="zoom-in">
           <main className={style.main}>
-            <div className={style.pinnedLineWrapper}>
-              <div className={style.pinnedLine}>
-                <hr />
-                <span>
-                  <FontAwesomeIcon icon={faThumbtack} className={style.pin} />
-                </span>
-                <hr className={style.shortLine} />
-              </div>
-            </div>
-            {projectsData.map((project) => {
-              return (
-                <>
-                  <SingleProject key={project.id} data={project} />{" "}
-                  <hr className={style.endLine} />
-                </>
-              );
-            })}
+            {projectsData ? (
+              <ProjectDisplay data={projectsData} />
+            ) : (
+              <EmptyProjectMessage />
+            )}
           </main>
           <div className={style.jsChallenge}></div>
         </div>
       </div>
     </section>
+  );
+};
+
+const ProjectDisplay = ({ data }) => {
+  let projects = data.map((project) => {
+    return (
+      <>
+        <SingleProject key={project.id} data={project} />
+        <hr className={style.endLine} />
+      </>
+    );
+  });
+
+  return (
+    <>
+      <div className={style.pinnedLineWrapper}>
+        <div className={style.pinnedLine}>
+          <hr />
+          <span>
+            <FontAwesomeIcon icon={faThumbtack} className={style.pin} />
+          </span>
+          <hr className={style.shortLine} />
+        </div>
+      </div>
+      {projects}
+    </>
+  );
+};
+
+const EmptyProjectMessage = () => {
+  return (
+    <>
+      <div className={style.message}>
+        <p>You haven't add any projects yet</p>
+        <p>or</p>
+        <p>Something's wrong with the server</p>
+      </div>
+      <hr className={style.endLine} />
+    </>
   );
 };
 
