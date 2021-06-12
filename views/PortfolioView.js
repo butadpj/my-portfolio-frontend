@@ -13,17 +13,25 @@ const PortfolioView = ({ home, about, projects }) => {
 
   const cursorRef = useRef(null);
 
-  const followMouse = (e) => {
+  const mouseMoveHandler = (e) => {
     cursorRef.current.style.top = `calc(${e.clientY}px - 1.5rem)`;
     cursorRef.current.style.left = `calc(${e.clientX}px - 1.5rem)`;
   };
 
+  // For touch screens e.g. Mobile phones, Tablets, etc.
+  const touchMoveHandler = (e) => {
+    cursorRef.current.style.left = `calc(${e.touches[0].clientX}px - 1.5rem)`;
+    cursorRef.current.style.top = `calc(${e.touches[0].clientY}px - 1.5rem)`;
+  };
+
   useEffect(() => {
     if (enableFancyCursor && cursorRef.current) {
-      document.addEventListener("mousemove", (e) => followMouse(e));
+      document.addEventListener("mousemove", (e) => mouseMoveHandler(e));
+      document.addEventListener("touchmove", (e) => touchMoveHandler(e));
 
       return () => {
-        document.removeEventListener("mousemove", (e) => followMouse(e));
+        document.removeEventListener("mousemove", (e) => mouseMoveHandler(e));
+        document.removeEventListener("touchmove", (e) => mouseMoveHandler(e));
       };
     } else {
       document.body.style.cursor = "default";
