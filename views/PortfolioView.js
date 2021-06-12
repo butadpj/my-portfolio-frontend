@@ -9,29 +9,40 @@ import Contact from "../components/sections/Contact";
 import Footer from "../components/sections/Footer";
 
 const PortfolioView = ({ home, about, projects }) => {
+  const [screenSize, setScreenSize] = useState({ w: 0, h: 0 });
   const [enableFancyCursor, setEnableFancyCursor] = useState(true);
 
   const cursorRef = useRef(null);
 
-  const mouseMoveHandler = (e) => {
-    cursorRef.current.style.top = `calc(${e.clientY}px - 1.5rem)`;
-    cursorRef.current.style.left = `calc(${e.clientX}px - 1.5rem)`;
+  const screenResize = () => {
+    setScreenSize({ w: window.innerWidth, h: window.innerHeight });
   };
 
-  // For touch screens e.g. Mobile phones, Tablets, etc.
-  const touchMoveHandler = (e) => {
-    cursorRef.current.style.left = `calc(${e.touches[0].clientX}px - 1.5rem)`;
-    cursorRef.current.style.top = `calc(${e.touches[0].clientY}px - 1.5rem)`;
+  const mouseMoveHandler = (e) => {
+    if (cursorRef.current) {
+      cursorRef.current.style.top = `calc(${e.clientY}px - 1.5rem)`;
+      cursorRef.current.style.left = `calc(${e.clientX}px - 1.5rem)`;
+    }
   };
+
+  // Disable fancy cursor on mobile devices (There's a performance issue when enabled)
+  useEffect(() => {
+    if (screenSize.w <= 800) {
+      setEnableFancyCursor(false);
+    } else {
+      setEnableFancyCursor(true);
+    }
+  }, [screenSize]);
 
   useEffect(() => {
-    if (enableFancyCursor && cursorRef.current) {
+    screenResize();
+    if (enableFancyCursor) {
+      window.addEventListener("resize", screenResize);
       document.addEventListener("mousemove", (e) => mouseMoveHandler(e));
-      document.addEventListener("touchmove", (e) => touchMoveHandler(e));
 
       return () => {
+        window.removeEventListener("resize", screenResize);
         document.removeEventListener("mousemove", (e) => mouseMoveHandler(e));
-        document.removeEventListener("touchmove", (e) => mouseMoveHandler(e));
       };
     } else {
       document.body.style.cursor = "default";
