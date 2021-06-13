@@ -30,7 +30,7 @@
 
 .mainTextPronoun {
   padding-left: 0.3rem;
-  margin-bottom: -1rem;
+  margin-bottom: -1.5rem;
 }
 
 .mainTextName {
@@ -42,7 +42,7 @@
   font-size: 0.38em;
   text-transform: capitalize;
   font-style: italic;
-  color: var(--light-3);
+  color: var(--dark-2);
   text-align: right;
 }
 
@@ -62,20 +62,42 @@
   word-spacing: 0.3rem;
 }
 
-@media screen and (min-width: 50rem) {
+@media screen and (max-width: 280px) {
+  .mainText {
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (min-width: 370px) {
+  .mainText {
+    font-size: 1.1em;
+  }
+}
+
+@media screen and (min-width: 425px) {
   .mainText {
     font-size: 1.3em;
   }
 }
 
-@media screen and (min-width: 60rem) {
+@media screen and (min-width: 50rem) {
   .mainText {
     font-size: 1.5em;
+  }
+
+  .careerTitle {
+    font-size: 0.3em;
   }
 }
 
 @media screen and (min-width: 60rem) {
   .mainText {
-    font-size: 1.8em;
+    font-size: 1.7em;
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .mainText {
+    font-size: 2em;
   }
 }
