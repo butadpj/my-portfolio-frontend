@@ -1,5 +1,5 @@
 .about {
-  background: var(--light-1);
+  background: var(--light);
   padding: 2em 1em;
   font-size: 2rem;
   color: var(--dark-2);
@@ -54,7 +54,6 @@
   object-fit: cover;
   border: 3px solid var(--dark) !important;
   border-radius: 50%;
-  mix-blend-mode: darken;
 }
 
 .profileName {
