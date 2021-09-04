@@ -53,7 +53,7 @@ const EmptyProjectMessage = () => {
   return (
     <>
       <div className={style.message}>
-        <p>You haven't added any projects yet</p>
+        <p>Paul haven't added any projects yet</p>
         <p>or</p>
         <p>Something's wrong with the server</p>
       </div>
