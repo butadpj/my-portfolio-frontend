@@ -5,6 +5,8 @@ import {
   faFacebookSquare,
   faGithubSquare,
   faInstagramSquare,
+  faDev,
+  faYoutubeSquare,
 } from "@fortawesome/free-brands-svg-icons";
 import { faHandPointUp } from "@fortawesome/free-solid-svg-icons";
 
@@ -22,14 +24,20 @@ const Footer = () => {
       </div>
       <main className={style.main}>
         <div className={style.mediaLinks}>
-          <a href="https://www.facebook.com/butadpj" target="_blank">
-            <FontAwesomeIcon icon={faFacebookSquare} />
-          </a>
           <a href="https://github.com/butadpj" target="_blank">
             <FontAwesomeIcon icon={faGithubSquare} />
           </a>
-          <a href="https://instagram.com/butadpj" target="_blank">
-            <FontAwesomeIcon icon={faInstagramSquare} />
+          <a href="https://dev.to/butadpj" target="_blank">
+            <FontAwesomeIcon icon={faDev} />
+          </a>
+          <a
+            href="https://www.youtube.com/channel/UCBTmZKbZkqE8JNpYyfTffHw"
+            target="_blank"
+          >
+            <FontAwesomeIcon icon={faYoutubeSquare} />
+          </a>
+          <a href="https://www.facebook.com/butadpj" target="_blank">
+            <FontAwesomeIcon icon={faFacebookSquare} />
           </a>
         </div>
         <div className={style.contacts}>
@@ -44,9 +52,9 @@ const Footer = () => {
         </div>
         <div className={style.footerLogo}>
           <Image src="/images/logo/logo-footer@2x.png" width={50} height={72} />
-          <p>Paul John Butad &copy; {fullYear}</p>
         </div>
       </main>
+      <p className={style.copyRight}>Paul John Butad &copy; {fullYear}</p>
     </section>
   );
 };

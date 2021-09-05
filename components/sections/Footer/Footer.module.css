@@ -6,9 +6,6 @@
   text-align: center;
   padding: 1.7em 0.5em;
   padding-bottom: 3em;
-}
-
-.main {
   color: var(--light-2);
 }
 
@@ -59,8 +56,33 @@
   margin-top: 1em;
 }
 
-.footerLogo p {
+.copyRight {
   font-size: 0.5em;
   font-weight: bold;
   letter-spacing: 0.5px;
+}
+
+@media screen and (min-width: 50rem) {
+  .main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .main > * {
+    margin: 0;
+    width: 100%;
+  }
+
+  .footerLogo {
+    order: 1;
+  }
+
+  .mediaLinks {
+    order: 2;
+  }
+
+  .contacts {
+    order: 2;
+  }
 }
