@@ -80,13 +80,14 @@
   .myAims > * > * p {
     width: 50%;
     text-align: left;
-    font-size: 1em;
+    font-size: 0.9em;
     line-height: 145%;
   }
 
   .aimIcon {
     font-size: 4em;
     margin-right: 1.5rem;
+    margin-bottom: 0;
   }
 
   .iconTool {
