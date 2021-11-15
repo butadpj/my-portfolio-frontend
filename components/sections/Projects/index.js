@@ -10,7 +10,7 @@ const Projects = ({ projectsData }) => {
       <div className={style.projectsWrapper}>
         <div data-aos="zoom-in">
           <main className={style.main}>
-            {projectsData ? (
+            {projectsData.length ? (
               <ProjectDisplay data={projectsData} />
             ) : (
               <EmptyProjectMessage />
@@ -24,15 +24,6 @@ const Projects = ({ projectsData }) => {
 };
 
 const ProjectDisplay = ({ data }) => {
-  let projects = data.map((project) => {
-    return (
-      <>
-        <SingleProject key={project.id} data={project} />
-        <hr className={style.endLine} />
-      </>
-    );
-  });
-
   return (
     <>
       <div className={style.pinnedLineWrapper}>
@@ -44,7 +35,17 @@ const ProjectDisplay = ({ data }) => {
           <hr className={style.shortLine} />
         </div>
       </div>
-      {projects}
+      {data.length && (
+        data.map((project) => {
+          return (
+            <>
+              <SingleProject key={project.id} data={project} />
+              <hr className={style.endLine} />
+            </>
+          );
+        })
+      )
+      }
     </>
   );
 };
