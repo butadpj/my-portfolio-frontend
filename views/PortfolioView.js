@@ -14,10 +14,6 @@ const PortfolioView = ({ home, about, projects }) => {
 
   const cursorRef = useRef(null);
 
-  const screenResize = () => {
-    setScreenSize({ w: window.innerWidth, h: window.innerHeight });
-  };
-
   const mouseMoveHandler = (e) => {
     if (cursorRef.current) {
       cursorRef.current.style.top = `calc(${e.clientY}px - 1.5rem)`;
@@ -35,7 +31,12 @@ const PortfolioView = ({ home, about, projects }) => {
   }, [screenSize]);
 
   useEffect(() => {
+    const screenResize = () => {
+      setScreenSize({ w: window.innerWidth, h: window.innerHeight });
+    };
+
     screenResize();
+
     if (enableFancyCursor) {
       window.addEventListener("resize", screenResize);
       document.addEventListener("mousemove", (e) => mouseMoveHandler(e));
