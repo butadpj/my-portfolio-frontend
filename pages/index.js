@@ -65,7 +65,7 @@ const index = ({ home, about, projects }) => {
 };
 
 export const getStaticProps = async () => {
-  let fetchUrl = `${process.env.devHost}/api/`;
+  let fetchUrl = `${process.env.prodHost}/api/`;
   let fetchApiVersion = "v1/"; // api version
   let fetchSectionUrls = ["home/", "about/", "projects/"];
   try {

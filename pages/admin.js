@@ -30,7 +30,7 @@ const admin = () => {
     e.preventDefault();
 
     try {
-      const getTokenUrl = `${process.env.devHost}/api/token/`;
+      const getTokenUrl = `${process.env.prodHost}/api/token/`;
 
       // Get a token from /api/token
       const res = await fetch(getTokenUrl, {
@@ -85,7 +85,7 @@ const admin = () => {
   };
 
   const handleLogout = async (e) => {
-    const logoutURL = `${process.env.devHost}/api/v1/users/logout/blacklist/`;
+    const logoutURL = `${process.env.prodHost}/api/v1/users/logout/blacklist/`;
 
     try {
       const res = await fetch(logoutURL, {

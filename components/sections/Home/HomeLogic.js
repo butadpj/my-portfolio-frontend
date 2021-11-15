@@ -73,7 +73,7 @@ const HomeLogic = (
   };
 
   const contentEditableFetch = async (property, value) => {
-    let fetchUrl = `${process.env.devHost}/api/v1/home/${fetchId}/`;
+    let fetchUrl = `${process.env.prodHost}/api/v1/home/${fetchId}/`;
 
     if (fetchId) {
       const res = await fetch(fetchUrl, {
