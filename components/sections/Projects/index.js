@@ -24,6 +24,17 @@ const Projects = ({ projectsData }) => {
 };
 
 const ProjectDisplay = ({ data }) => {
+  const projects = data.length > 0 && (
+    data.map((project) => {
+      return (
+        <>
+          <SingleProject key={project.id} data={project} />
+          <hr className={style.endLine} />
+        </>
+      );
+    })
+  )
+
   return (
     <>
       <div className={style.pinnedLineWrapper}>
@@ -35,17 +46,7 @@ const ProjectDisplay = ({ data }) => {
           <hr className={style.shortLine} />
         </div>
       </div>
-      {data.length && (
-        data.map((project) => {
-          return (
-            <>
-              <SingleProject key={project.id} data={project} />
-              <hr className={style.endLine} />
-            </>
-          );
-        })
-      )
-      }
+      {projects}
     </>
   );
 };
