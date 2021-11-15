@@ -9,7 +9,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 import { SectionDataContext } from "../context/SectionDataContext";
-import useGetVersion from "../hooks/useGetVersion";
+import { selectDataVersion } from "../utils";
 
 let SHOWLOADERTIME = 1000; // setTimeOut delay
 
@@ -20,8 +20,8 @@ const index = ({ home, about, projects }) => {
   const loadingState = sectionDataState.isLoading;
 
   // Get the specified data version (in SectionDataContext)
-  let homeData = useGetVersion(sectionDataState.selectedVersion, home);
-  let aboutData = useGetVersion(sectionDataState.selectedVersion, about);
+  let homeData = selectDataVersion(sectionDataState.selectedVersion, home);
+  let aboutData = selectDataVersion(sectionDataState.selectedVersion, about);
 
   useEffect(() => {
     // Initialize AOS
