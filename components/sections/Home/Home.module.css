@@ -24,18 +24,19 @@
   text-align: left;
   text-transform: uppercase;
   width: fit-content;
-  font-weight: 1000;
+  font-weight: 600;
   letter-spacing: 1px;
 }
 
 .mainTextPronoun {
   padding-left: 0.3rem;
-  margin-bottom: -1.5rem;
+  margin-bottom: -5rem;
 }
 
 .mainTextName {
   font-size: 2em;
   padding-right: 1px;
+  margin-bottom: -3rem;
 }
 
 .careerTitle {
