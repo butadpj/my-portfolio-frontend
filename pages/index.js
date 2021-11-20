@@ -1,8 +1,7 @@
 import { useEffect, useContext } from "react";
 
 import Head from "next/head";
-import Loader from "../components/Loader";
-import PWAInstallerAlert from "../components/PWAInstallerAlert";
+import { Loader, PWAInstallerAlert } from '../components';
 import PortfolioView from "../views/PortfolioView";
 
 import AOS from "aos";
@@ -25,21 +24,26 @@ const index = ({ home, about, projects }) => {
 
   useEffect(() => {
     // Initialize AOS
-    AOS.init({ duration: 800, offset: 100 });
+    AOS.init({
+      duration: 800,
+      offset: 0,
+      once: true,
+
+    });
     AOS.refresh();
+
+    // Get the id of specified section data version (for fetch purposes)
+    sectionDataDispatch({
+      type: "DATA_SECTION_VERSION_ID",
+      payload: {
+        homeId: homeData ? homeData.id : 1,
+        aboutId: aboutData ? aboutData.id : 1,
+      },
+    });
 
     // Hide the loader after (n) milliseconds
     let timer = setTimeout(() => {
       sectionDataDispatch({ type: "DATA_INIT" }); // isLoading state -> False
-
-      // Get the id of specified section data version (for fetch purposes)
-      sectionDataDispatch({
-        type: "DATA_SECTION_VERSION_ID",
-        payload: {
-          homeId: homeData ? homeData.id : 1,
-          aboutId: aboutData ? aboutData.id : 1,
-        },
-      });
     }, SHOWLOADERTIME);
 
     // Clear timeout if the component will unmount
@@ -55,11 +59,14 @@ const index = ({ home, about, projects }) => {
         <title>Paul's Portfolio | Home</title>
       </Head>
 
-      {loadingState ? (
-        <Loader />
-      ) : (
-        <PortfolioView home={homeData} about={aboutData} projects={projects} />
-      )}
+      {loadingState ? <Loader /> : null}
+
+      <PortfolioView
+        home={homeData}
+        about={aboutData}
+        projects={projects}
+      />
+
     </>
   );
 };

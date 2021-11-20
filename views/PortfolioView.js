@@ -1,12 +1,13 @@
 import { useRef, useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import UserStatus from "../components/UserStatus";
-import Home from "../components/sections/Home";
-import About from "../components/sections/About";
-import Aims from "../components/sections/Aims";
-import Projects from "../components/sections/Projects";
-import Contact from "../components/sections/Contact";
-import Footer from "../components/sections/Footer";
+import { Navbar, UserStatus } from '../components';
+import {
+  Home,
+  About,
+  Aims,
+  Projects,
+  Contact,
+  Footer,
+} from '../components/sections';
 
 const PortfolioView = ({ home, about, projects }) => {
   const [screenSize, setScreenSize] = useState({ w: 0, h: 0 });
